@@ -184,12 +184,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>waterfall(tasks, [callback]) （多个函数依次执行，且前一个的输出为后一个的输入）<br>按顺序依次执行多个函数。每一个函数产生的值，都将传给下一个函数。如果中途出错，后面的函数将不会被执行。错误信息以及之前产生的结果，将传给waterfall最终的callback。</p>
-<p>对于学过了js回调机制的小伙伴，waterfall是比较容易理解的，个人的理解就是，waterfall中传入的函数数组tasks中，后一个函数为前一个函数的回调，使用cb(null,args)，这样的形式调用下一个函数，如果出现异常，则直接使用cb(new Error(“错误的信息”))这样的方式来捕捉异常，并调用最终的回调函数来处理，在这种情况下，出现异常的函数后面那些函数，将不再继续执行，测试代码如下：</p>
-<p>‘’’<br>var async = require(‘async’);<br>var a = 10;<br>async.waterfall([<br>    function(cb) {<br>        console.log(“getb”)<br>        setTimeout(function() {<br>            if (a == 0) {<br>                cb(new Error(“a不能为0”));<br>            } else {<br>                var b = 1 / a;<br>                cb(null, b); //在这里通过回调函数把b传给下一个函数，记得一定要加上null，才能调用数组中得下一个函数，否则，会直接调用最终的回调函数，然后结束函数，则后面的函数将不再执行<br>                //如果这里写成cb(b);<br>                //结果会变成：<br>                /<strong><br>                 <em>getb
-                 </em>0.1
-                 </strong>/<br>            }<br>        }, 1000);<br>    },<br>    function(b, cb) {<br>        setTimeout(function() {<br>            console.log(“getc”)<br>            var c = b + 1;<br>            cb(null,c);<br>        }, 1000);<br>    }<br>], function(err, result) {<br>    if (err) {<br>        console.log(err);<br>    } else {<br>        console.log(‘c:’ + result)<br>    }<br>});<br>‘’’<br>结果：<br>‘’’<br>当a = 0时，会直接抛出错误，输出如下：<br>getb<br>Error: a不能为0<br>先执行了第一个函数，在第一个函数中抛出异常之后，直接执行最终的回调函数，并没有接着执行第二个函数。<br>a = 10 时，输出如下：<br>getb<br>getc<br>1.1<br>先执行了第一个函数，然后把第一个函数算出的b传给了第二个函数，再次算出第二个函数中得C，传给最终的结果result。<br>‘’’</p>
-
+        <blockquote>
+<p>waterfall(tasks, [callback]) （多个函数依次执行，且前一个的输出为后一个的输入）<br>按顺序依次执行多个函数。每一个函数产生的值，都将传给下一个函数。如果中途出错，后面的函数将不会被执行。错误信息以及之前产生的结果，将传给waterfall最终的callback。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/10/11/waterfall-use/#more">more >></a>
+        
       
 
       
