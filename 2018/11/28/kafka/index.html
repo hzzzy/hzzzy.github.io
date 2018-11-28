@@ -6,20 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.hzzzy.top">
-  <title>ExecutorService使用 | Hzzzy的博客</title>
+  <title>Kafka技术原理 | Hzzzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
-<meta name="keywords" content="java">
+  <meta name="description" content="Kafka是一款分布式消息发布和订阅的系统，具有高性能和高吞吐率的特点。官网地址：http://kafka.apache.org 一、整体架构 1、消息的发布（publish）简称producer，消息的订阅（subscribe）称为consumer，中间的存储阵列称为broker。2、多个broker协同合作，producer、broker和consumer三者通过zookeeper来协调请求和">
+<meta name="keywords" content="kafka">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ExecutorService使用">
-<meta property="og:url" content="www.hzzzy.top/2017/11/27/ExecutorService/index.html">
+<meta property="og:title" content="Kafka技术原理">
+<meta property="og:url" content="www.hzzzy.top/2018/11/28/kafka/index.html">
 <meta property="og:site_name" content="Hzzzy的博客">
-<meta property="og:description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
+<meta property="og:description" content="Kafka是一款分布式消息发布和订阅的系统，具有高性能和高吞吐率的特点。官网地址：http://kafka.apache.org 一、整体架构 1、消息的发布（publish）简称producer，消息的订阅（subscribe）称为consumer，中间的存储阵列称为broker。2、多个broker协同合作，producer、broker和consumer三者通过zookeeper来协调请求和">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-11-28T08:58:36.000Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnltus7xej30fx0953yy.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1fxnluoqdpcj30be084gmb.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1fxnlv6nxlsj30f90gqq4u.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1fxnlvq1zh3j30i00793zb.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnlw6w2c3j30hm0cpabm.jpg">
+<meta property="og:updated_time" content="2018-11-28T03:18:04.930Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ExecutorService使用">
-<meta name="twitter:description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
+<meta name="twitter:title" content="Kafka技术原理">
+<meta name="twitter:description" content="Kafka是一款分布式消息发布和订阅的系统，具有高性能和高吞吐率的特点。官网地址：http://kafka.apache.org 一、整体架构 1、消息的发布（publish）简称producer，消息的订阅（subscribe）称为consumer，中间的存储阵列称为broker。2、多个broker协同合作，producer、broker和consumer三者通过zookeeper来协调请求和">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnltus7xej30fx0953yy.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hzzzy的博客" type="application/atom+xml">
   
@@ -167,104 +173,91 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ExecutorService" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-kafka" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ExecutorService使用
+      Kafka技术原理
     </h1>
   
 
         
-        <a href="/2017/11/27/ExecutorService/" class="archive-article-date">
-  	<time datetime="2017-11-27T03:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+        <a href="/2018/11/28/kafka/" class="archive-article-date">
+  	<time datetime="2018-11-28T03:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<ul>
-<li>java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。</li>
-<li>Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command)</li>
-<li>ExecutorService：是一个比Executor使用更广泛的子类接口，其提供了生命周期管理的方法，以及可跟踪一个或多个异步任务执行状况返回Future的方法。</li>
-<li>事实上，在java.util.concurrent 包中的 ExecutorService 的实现就是一个线程池的实现。</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般情况下，多线程的实现或者异步执行任务是通过继承Thread类或Runnable接口实现。但这种方式缺点很明显：</p>
-<ul>
-<li>线程缺乏统一管理，可能无限制新建线程，相互之间竞争。</li>
-<li>性能差。</li>
-<li>容易造成死机，资源耗尽。</li>
-</ul>
-<p>然而，使用线程池的好处则不言而喻了。</p>
-<ul>
-<li>其支持多种不同类型的任务执行策略。</li>
-<li>提供对生命周期的支持，以及统计信息收集，应用程序管理机制和性能监视等机制。</li>
-<li>提供定时执行、定期执行、单线程、并发数控制等功能。</li>
-<li>有效控制最大并发线程数，提高系统资源的使用率。</li>
-</ul>
-<h3 id="最简单的ExecutorService样例"><a href="#最简单的ExecutorService样例" class="headerlink" title="最简单的ExecutorService样例"></a>最简单的ExecutorService样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newFixedThreadPool(5);   </span><br><span class="line">executorService.execute(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure>
-<p>上述代码使用newFixedThreadPool() 工厂方法创建一个 ExecutorService，创建了容纳5个线程的线程池。<br>然后，向 execute() 方法中传一个异步的 Runnable 接口的实现，这样做会让 ExecutorService 线程池中的某个线程执行这个传递进来的 Runnable 线程。<br>你会发现ExecutorService是通过Executors创建的，那Executors到底是什么鬼来的呢？</p>
-<blockquote>
-<p>Executors：提供了一系列静态工厂方法用于创建各种线程池。</p>
-</blockquote>
-<p>此外Executors一共可以创建下面这<strong>四类</strong>线程池：</p>
-<ul>
-<li>newCachedThreadPool 创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。 </li>
-<li>newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。 </li>
-<li>newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。 </li>
-<li>newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</li>
-</ul>
-<h3 id="ExecutorService的执行"><a href="#ExecutorService的执行" class="headerlink" title="ExecutorService的执行"></a>ExecutorService的执行</h3><p>ExecutorService有如下几个执行方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- execute(Runnable)</span><br><span class="line">- submit(Runnable)</span><br><span class="line">- submit(Callable)</span><br><span class="line">- invokeAny(...)</span><br><span class="line">- invokeAll(...)</span><br></pre></td></tr></table></figure></p>
-<h5 id="1-execute-Runnable"><a href="#1-execute-Runnable" class="headerlink" title="1. execute(Runnable)"></a>1. execute(Runnable)</h5><p>方法 execute(Runnable) 接收一个 java.lang.Runnable 对象作为参数，并且以异步的方式执行它。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();   </span><br><span class="line">executorService.execute(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);       </span><br><span class="line">executorService.shutdown()</span><br></pre></td></tr></table></figure></p>
-<p>使用这种方式没有办法获取执行Runnable之后的结果，如果你希望获取运行之后的返回值，就必须使用 接收Callable参数的 execute()方法，后者将会在下文中提到。</p>
-<h5 id="2-submit-Runnable"><a href="#2-submit-Runnable" class="headerlink" title="2.submit(Runnable)"></a>2.submit(Runnable)</h5><p>方法 submit(Runnable) 同样接收一个Runnable的实现作为参数，但是会返回一个Future对象。这个 Future 对象可以用于判断Runnable是否结束执行。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future future = executorService.submit(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">//如果任务结束执行则返回 null  </span><br><span class="line">System.out.println(&quot;future.get()=&quot; + future.get());</span><br></pre></td></tr></table></figure></p>
-<h5 id="3-submit-Callable"><a href="#3-submit-Callable" class="headerlink" title="3.submit(Callable)"></a>3.submit(Callable)</h5><p>方法submit(Callable)和方法submit(Runnable)比较类似，但是区别则在于它们接收不同的参数类型。Callable的实例与Runnable的实例很类似，但是Callable的call()方法可以返回一个结果。方法Runnable.run() 则不能返回结果。Callable的返回值可以从方法submit(Callable)返回的 Future 对象中获取实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future future = executorService.submit(new Callable()&#123;  </span><br><span class="line">    public Object call() throws Exception &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous Callable&quot;);  </span><br><span class="line">        return &quot;Callable Result&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">System.out.println(&quot;future.get() = &quot; + future.get());</span><br></pre></td></tr></table></figure></p>
-<h5 id="4-inVokeAny"><a href="#4-inVokeAny" class="headerlink" title="4.inVokeAny()"></a>4.inVokeAny()</h5><p>方法invokeAny()接收一个包含Callable对象的集合作为参数。调用该方法不会返回Future对象，而是返回集合中某一个Callable对象的结果，而且无法保证调用之后返回的结果是哪一个Callable，只知道它是这些 Callable中一个执行结束的 Callable 对象。如果一个任务运行完毕或者抛出异常，方法会取消其它的 Callable 的执行。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();   </span><br><span class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();   </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 1&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 2&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 3&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);   </span><br><span class="line">String result = executorService.invokeAny(callables);   </span><br><span class="line">System.out.println(&quot;result = &quot; + result);   </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure></p>
-<h5 id="5-invokeAll"><a href="#5-invokeAll" class="headerlink" title="5.invokeAll()"></a>5.invokeAll()</h5><p>方法invokeAll()会调用存在于参数集合中的所有Callable对象，并且返回一个包含Future对象的集合，你可以通过这个返回的集合来管理每个Callable的执行结果。需要注意的是，任务有可能因为异常而导致运行结束，所以它可能并不是真的成功运行了。但是我们没有办法通过Future对象来了解到这个差异。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();    </span><br><span class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();   </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 1&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 2&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 3&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);    </span><br><span class="line">String result = executorService.invokeAny(callables);    </span><br><span class="line">System.out.println(&quot;result = &quot; + result);    </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure></p>
-<h3 id="ExecutorService的关闭"><a href="#ExecutorService的关闭" class="headerlink" title="ExecutorService的关闭"></a>ExecutorService的关闭</h3><p>当我们使用完成ExecutorService之后应该关闭它，否则它里面的线程会一直处于运行状态。<br>ExecutorService的关闭，可以调用ExecutorService.shutdown()方法。在调用shutdown()方法之后，ExecutorService不会立即关闭，但是它不再接收新的任务，直到当前所有线程执行完成才会关闭，所有在shutdown()执行之前提交的任务都会被执行。<br>如果想立即关闭ExecutorService，可以调用ExecutorService.shutdownNow()方法。这个动作将跳过所有正在执行的任务和被提交还没有执行的任务。但是它并不对正在执行的任务做任何保证，有可能它们都会停止，也有可能执行完成。</p>
-<h4 id="等待ExecutorService的结束"><a href="#等待ExecutorService的结束" class="headerlink" title="等待ExecutorService的结束"></a>等待ExecutorService的结束</h4><p>由于调用shutdown方法，ExecutorService不是立即关闭，那么，怎么知道ExecutorService的线程池里的线程都执行完毕了呢？<br>可以使用awaitTermination方法检查，例子如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService threadPool = Executors.newCachedThreadPool();</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;Asynchronous task1&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(20 * 1000); // 休眠20秒</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(60 * 1000);</span><br><span class="line">			&#125; catch (InterruptedException e1) &#123;</span><br><span class="line">				e1.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;Asynchronous task2&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(4 * 1000); // 休眠4秒</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(60 * 1000);</span><br><span class="line">			&#125; catch (InterruptedException e1) &#123;</span><br><span class="line">				e1.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;Asynchronous task3&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 启动一次顺序关闭，执行以前提交的任务，但不接受新任务。</span><br><span class="line">threadPool.shutdown();</span><br><span class="line">try &#123;</span><br><span class="line">	// 请求关闭、发生超时或者当前线程中断，无论哪一个首先发生之后，都将导致阻塞，直到所有任务完成执行</span><br><span class="line">	// 设置最长等待10秒</span><br><span class="line">	while (!threadPool.awaitTermination(10, TimeUnit.SECONDS)) &#123;</span><br><span class="line">		System.out.println(&quot;&gt;&gt;&gt;&gt;线程尚未结束&gt;&gt;&gt;&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(&quot;&gt;&gt;&gt;&gt;线程已结束!&gt;&gt;&gt;&gt;&quot;);</span><br><span class="line">&#125; catch (InterruptedException e) &#123;</span><br><span class="line">	System.out.println(&quot;异常:&quot; + e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Asynchronous task1</span><br><span class="line">Asynchronous task3</span><br><span class="line">&gt;&gt;&gt;&gt;线程尚未结束&gt;&gt;&gt;&gt;</span><br><span class="line">Asynchronous task2</span><br><span class="line">&gt;&gt;&gt;&gt;线程已结束!&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+        <p>Kafka是一款分布式消息发布和订阅的系统，具有高性能和高吞吐率的特点。官网地址：<a href="http://kafka.apache.org" target="_blank" rel="noopener">http://kafka.apache.org</a></p>
+<h2 id="一、整体架构"><a href="#一、整体架构" class="headerlink" title="一、整体架构"></a>一、整体架构</h2><p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnltus7xej30fx0953yy.jpg" alt=""></p>
+<p>1、消息的发布（publish）简称producer，消息的订阅（subscribe）称为consumer，中间的存储阵列称为broker。<br>2、多个broker协同合作，producer、broker和consumer三者通过zookeeper来协调请求和转发。<br><a id="more"></a><br>3、producer生产和推送（push）到broker，consumer从broker拉取（pull）数据并行处理。<br>4、broker端不维护数据的消费状态，提高broker的TPS；<br>5、直接使用磁盘进行存储，线性读写，速度快，避免了数据在JVM内存和系统内存之间的复制，减少耗性能的创建对象和垃圾回收。<br>6、Kafka使用scala编写，可以运行在JVM上。</p>
+<h2 id="二、术语"><a href="#二、术语" class="headerlink" title="二、术语"></a>二、术语</h2><p>Broker：<br>Kafka集群包含一个或多个服务器，这种服务器被称为broker。一台Kafka服务器就是一个broker，一个broker可以容纳多个topic。<br>Topic:<br>每条发布到Kafka集群的消息都有一个类别，这个类别被称为Topic。物理上不同Topic的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个broker上，但是用户只需要指定消息的Topic即可生产或消费数据不必关心数据存于何处。<br>Partition:<br>Partition是物理上的概念，每个Topic包含一个或多个Partition。<br>Producer:<br>负责发布消息到Kafka broker。<br>Consumer:<br>消息消费者，向Kafka broker读取消息的客户端。<br>Consumer Group:<br>每个consumer属于一个特定的Consumer Group（可为每个consumer指定group name，若不指定group name则属于默认的group）。各个consumer可以组成一个组，每个消息只能被组中的一个consumer消费，如果一个消息可以被多个consumer消费的话，那么这些consumer必须在不同的组。<br>Offset:<br>Kafka的存储文件都是按照offset.kafka来命名，好处是方便查找。<br>Replica:<br>partition的副本，保障partition的高可用。<br>Leader:<br>replica中的一个角色，producer和consumer只能跟leader交互。<br>Follower:<br>replica中的一个角色，从leader中复制数据。</p>
+<h2 id="三、技术原理"><a href="#三、技术原理" class="headerlink" title="三、技术原理"></a>三、技术原理</h2><p>1、Topics/logs</p>
+<p>一个topic可认为是一类消息，每个topic将被分成多个partition（分区），每个partition在存储层面是append log文件。任何发布到此partition的消息都会被直接追加到log文件的尾部，每条消息在文件中的位置称为offset（偏移量），offset为一个long型数字，它是唯一标识一条消息。Kafka并没有提供其它额外的索引机制来存储offset，因为Kafka不允许对消息进行“随机读写”。<br><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxnluoqdpcj30be084gmb.jpg" alt=""></p>
+<p>Kafka和JMS（Java Message Service）都实现了activeMQ，不同的是：即使消息被消费，消息仍然不会被立即删除，日志文件将会根据broker中的配置要求，保留一定的时间之后删除。</p>
+<p>对于consumer而言，它需要保存消费消息的offset，对于offset的保存和使用由consumer来控制；当consumer正常消费消息时，offset将会线性向前驱动，即消息将依次顺序被消费，事实上consumer可以使用任意顺序消费消息，只需要将offset重置为任何值。</p>
+<p>Kafka集群不维护任何consumer和producer状态信息，这些信息由Zookeeper保存，因此producer和consumer的实现是非常轻量级，它们可以随意离开，而不会对集群造成额外的影响。</p>
+<p>partition的设计目的有多个，最根本原因是Kafka基于文件存储，通过分区可以将日志内容分散到多个server上，来避免文件尺寸达到单机磁盘的上限，每个partition都会被当前server（Kafka实例）保存，可以将一个topic切分任意多个partitions来提高消息保存/消费的效率，此外越多的partitions意味着可以容纳更多的consumer，有效提升并发消费的能力。</p>
+<p>2、Distribution</p>
+<p>一个Topic的多个partitions被分布在Kafka集群中的多个server上，每个server（Kafka实例）负责partitions中消息的读写操作，此外Kafka还可以配置partitions需要备份的个数（replica），每个partition将会备份到多台机器上以提高可用性。</p>
+<p>基于replicated方案，那么就意味着需要对多个备份进行调度，每个partition都有一个server为“leader”，leader负责所有的读写操作，如果leader失败，那么将会有其它follower来接管成为新的leader，follower只是单调的和leader跟进，同步消息即可，由此可见，作为leader的server承载了全部的请求压力，从集群的整体考虑，有多少个partitions就意味着有多少个“leader”，Kafka会将“leader”均衡分散在每个实例上，来确保整体的性能稳定。</p>
+<p>3、Producers</p>
+<p>producer将消息发布到指定的Topic中，同时producer也能指定将此消息归属于那个partition。</p>
+<p>4、Consumers</p>
+<p>本质上Kafka只支持Topic，每个consumer属于一个consumer group，反过来说，每个group中可以有多个consumer，发送到topic的消息，只会被订阅到此topic的每个group的一个consumer消费。</p>
+<p>如果所有的consumer都具有相同的group，这种情况和queue模式很像，消息将会在consumers之间负载均衡。如果所有的consumer都具有不同的group，那这就是“发布”-“订阅”，消息将会广播给所有的消费者。</p>
+<p>在Kafka中，一个partition中的消息只会被group中的一个consumer消费，每个group中consumer消息消费相互独立，可以认为一个“group”是一个订阅者，一个topic中的每个partitions只会被一个“订阅者”中的一个consumer消费，不过一个consumer可以消费多个partitions中的数据。Kafka只能保证一个partition中的消息被某个consumer消费时，消息是顺序的，事实上，从Topic角度来看，消息仍不是有序的。Kafka的设计原理决定，对于一个topic，同一个group中不能有多于partitions个数的consumer同时消费，否则将意味着某些consumer将无法得到消息。</p>
+<p>5、消息传送机制</p>
+<p>1）at most once：最多一次，发送一次，无论成败，将不会重发。消费者fetch消息，先保存offset，然后处理消息，当client保存offset后，但是在消息处理过程中出现异常导致部分消息未能继续处理，那么此后“未处理”的消息将不能被fetch到。</p>
+<p>2）at least once：消息至少发送一次，如果消息未能接受成功，可能会重发，直到接收成功。消费者fetch消息，先处理消息，然后保存offset，如果消息处理成功，但是在保存offset阶段由于Zookeeper异常导致保存操作未能执行成功，这就导致接下来再次fetch时可能获得上次已经处理过的消息，原因offset没有及时的提交给Zookeeper，Zookeeper恢复正常还是之前的offset状态。</p>
+<p>3）exactly once：消息只会发送一次。Kafka中并没有严格地去实现。</p>
+<h2 id="四、参数配置说明"><a href="#四、参数配置说明" class="headerlink" title="四、参数配置说明"></a>四、参数配置说明</h2><p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxnlv6nxlsj30f90gqq4u.jpg" alt=""><br><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxnlvq1zh3j30i00793zb.jpg" alt=""><br><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnlw6w2c3j30hm0cpabm.jpg" alt=""></p>
+<h2 id="五、性能调优"><a href="#五、性能调优" class="headerlink" title="五、性能调优"></a>五、性能调优</h2><p>1、设置vm.swappiness为较小值（swap机制）</p>
+<p>计算机的内存分为虚拟内存和物理内存，物理内存是真实的内存，虚拟内存是用磁盘来代替内存，通过swap机制实现磁盘到物理内存的加载和替换。在写文件的时候，Linux首先将数据写入没有被使用的内存中，这些内存被称为内存页（page cache），然后读的时候，Linux会优先从page cache中查找，如果找不到就会从磁盘中查找。当物理内存使用达到一定的比例后，Linux就会进行swap，使用磁盘作为虚拟内存。通过cat /proc/sys/vm/swappiness可以看到swap参数，这个参数表示swap磁盘代替的虚拟内存占了多少百分比。0表示最大限度的使用内存，100表示使用swap磁盘。系统默认的参数60，当物理内存使用率达到40%，就会频繁进行swap，影响系统性能，推荐将vm.swappiness设置为较低值1。</p>
+<p>2、提高partition个数</p>
+<p>Kafka是一个高吞吐量分布式消息系统，其高性能有两个特点：1）利用磁盘连续读写性高于随机读写；2）并发，将一个topic拆分多个partition。因此，将一个topic拆分为多个partition可以提高吞吐量，但有个前提就是partition需要位于不同磁盘，如果多个partition位于同一个磁盘，那么意味着有多个进程同时对一个磁盘的多个文件进行读写，使得操作系统会对磁盘读写进行频繁调度，也就是破坏磁盘读写的连续性。</p>
+<p>3、挂盘优于磁盘阵列，小块盘优于大块盘</p>
+<p>充分利用多磁盘并发读写，又能保证每个磁盘连续读写的特性。</p>
+<p>4、JVM参数优化</p>
+<p>推荐使用最新的G1来代替CMS作为垃圾回收器。G1是一种适用于服务器端的垃圾回收器，很好地平衡了吞吐量和响应能力。</p>
+<p>5、Producer优化</p>
+<p>提高message的缓冲区大小；默认发送不进行压缩，推荐配置一种适合的压缩算法；</p>
+<p>6、Broker参数优化</p>
+<p>1）网络和IO操作线程配置优化</p>
+<p>broker处理消息的最大线程数 </p>
+<p>num.network.threads=xxx </p>
+<p>broker处理磁盘IO的线程数 </p>
+<p>num.io.threads=xxx </p>
+<p>num.network.threads用于接收并处理网络请求的线程数，默认为3。其内部实现是采用selector模型，启动一个线程作为acceptor来负责建立连接，再配合启动num.network.threads个线程来轮流负责从socket读取请求，一般无需改动，除非上下游并发请求量过大。一般num.network.threads主要处理网络io，读写缓冲区数据，基本没有io等待，配置线程数量为CPU核数加1。num.io.threads主要进行磁盘io操作，高峰期可能有些io等待，因此配置需要大些，配置线程数量为CPU核数2倍，最大不超过3倍。</p>
+<p>2）log数据文件刷盘策略</p>
+<p>为了提高producer写入吞吐量，需要定期批量写文件。</p>
+<p>log.flush.interval.messages=10000</p>
+<p>log.flush.interval.ms=1000</p>
+<p>3）日志保存策略</p>
+<p>根据实际应用及数据增长速率调整磁盘数据过期时间。</p>
+<p>log.retention.hours=72</p>
+<p>log.segment.bytes=1073741824</p>
+<p>4）配置jmx服务</p>
+<p>Kafka server中默认是不启动jmx端口的，需要用户配置。</p>
+<p>vim bin/kafka-run-class.sh </p>
+<p>最前面添加一行 JMX_PORT=8060</p>
+<p>5）Replica相关配置</p>
+<p>replica.lag.time.max.ms=10000</p>
+<p>replica.lag.max.messages=4000</p>
+<p>num.replica.fetchers=1</p>
+<p>default.replication.factor=1</p>
+<p>在Replica上会启动若干Fetch线程把对应的数据同步到本地，而num.replica.fetchers这个参数是用来控制Fetch线程的数量；Replica过少会影响数据的可用性，太多则会白白浪费存储资源，一般建议在2~3为宜。</p>
+<p>6）分区数量</p>
+<p>num.partitions=1</p>
+<p>分区数影响topic并发读写的线程数，通常设置为磁盘数来提高Kafka的吞吐量。</p>
 
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢打赏！<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/tb.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/wx.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -275,7 +268,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
         		</li>
       		
 		</ul>
@@ -287,7 +280,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
@@ -342,7 +335,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:www.hzzzy.top/2017/11/27/ExecutorService/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:www.hzzzy.top/2018/11/28/kafka/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -356,18 +349,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/28/maven-profile/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/28/spark/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          利用maven-profile实现配置分离多环境切换
+          Spark基本架构及原理
         
       </div>
     </a>
   
   
-    <a href="/2017/11/26/maven-order/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">maven生产中的常用命令</div>
+    <a href="/2018/10/18/mysql-order-user/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL创建用户与授权</div>
       <i class="icon-circle-right"></i>
     </a>
   

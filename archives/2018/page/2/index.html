@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.hzzzy.top">
-  <title>ExecutorService使用 | Hzzzy的博客</title>
+  <title>Archives: 2018 | Hzzzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
-<meta name="keywords" content="java">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ExecutorService使用">
-<meta property="og:url" content="www.hzzzy.top/2017/11/27/ExecutorService/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hzzzy的博客">
+<meta property="og:url" content="www.hzzzy.top/archives/2018/page/2/index.html">
 <meta property="og:site_name" content="Hzzzy的博客">
-<meta property="og:description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-11-28T08:58:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ExecutorService使用">
-<meta name="twitter:description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
+<meta name="twitter:title" content="Hzzzy的博客">
   
     <link rel="alternative" href="/atom.xml" title="Hzzzy的博客" type="application/atom+xml">
   
@@ -167,109 +162,85 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ExecutorService" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      ExecutorService使用
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/01/05/ubuntu-desktop/" class="archive-article-date">
+  	<time datetime="2018-01-05T01:53:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-05</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/01/05/ubuntu-desktop/">ubuntu下创建快捷方式(启动器)</a>
     </h1>
   
 
-        
-        <a href="/2017/11/27/ExecutorService/" class="archive-article-date">
-  	<time datetime="2017-11-27T03:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<ul>
-<li>java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。</li>
-<li>Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command)</li>
-<li>ExecutorService：是一个比Executor使用更广泛的子类接口，其提供了生命周期管理的方法，以及可跟踪一个或多个异步任务执行状况返回Future的方法。</li>
-<li>事实上，在java.util.concurrent 包中的 ExecutorService 的实现就是一个线程池的实现。</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般情况下，多线程的实现或者异步执行任务是通过继承Thread类或Runnable接口实现。但这种方式缺点很明显：</p>
-<ul>
-<li>线程缺乏统一管理，可能无限制新建线程，相互之间竞争。</li>
-<li>性能差。</li>
-<li>容易造成死机，资源耗尽。</li>
-</ul>
-<p>然而，使用线程池的好处则不言而喻了。</p>
-<ul>
-<li>其支持多种不同类型的任务执行策略。</li>
-<li>提供对生命周期的支持，以及统计信息收集，应用程序管理机制和性能监视等机制。</li>
-<li>提供定时执行、定期执行、单线程、并发数控制等功能。</li>
-<li>有效控制最大并发线程数，提高系统资源的使用率。</li>
-</ul>
-<h3 id="最简单的ExecutorService样例"><a href="#最简单的ExecutorService样例" class="headerlink" title="最简单的ExecutorService样例"></a>最简单的ExecutorService样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newFixedThreadPool(5);   </span><br><span class="line">executorService.execute(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure>
-<p>上述代码使用newFixedThreadPool() 工厂方法创建一个 ExecutorService，创建了容纳5个线程的线程池。<br>然后，向 execute() 方法中传一个异步的 Runnable 接口的实现，这样做会让 ExecutorService 线程池中的某个线程执行这个传递进来的 Runnable 线程。<br>你会发现ExecutorService是通过Executors创建的，那Executors到底是什么鬼来的呢？</p>
-<blockquote>
-<p>Executors：提供了一系列静态工厂方法用于创建各种线程池。</p>
-</blockquote>
-<p>此外Executors一共可以创建下面这<strong>四类</strong>线程池：</p>
-<ul>
-<li>newCachedThreadPool 创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。 </li>
-<li>newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。 </li>
-<li>newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。 </li>
-<li>newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</li>
-</ul>
-<h3 id="ExecutorService的执行"><a href="#ExecutorService的执行" class="headerlink" title="ExecutorService的执行"></a>ExecutorService的执行</h3><p>ExecutorService有如下几个执行方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- execute(Runnable)</span><br><span class="line">- submit(Runnable)</span><br><span class="line">- submit(Callable)</span><br><span class="line">- invokeAny(...)</span><br><span class="line">- invokeAll(...)</span><br></pre></td></tr></table></figure></p>
-<h5 id="1-execute-Runnable"><a href="#1-execute-Runnable" class="headerlink" title="1. execute(Runnable)"></a>1. execute(Runnable)</h5><p>方法 execute(Runnable) 接收一个 java.lang.Runnable 对象作为参数，并且以异步的方式执行它。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();   </span><br><span class="line">executorService.execute(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);       </span><br><span class="line">executorService.shutdown()</span><br></pre></td></tr></table></figure></p>
-<p>使用这种方式没有办法获取执行Runnable之后的结果，如果你希望获取运行之后的返回值，就必须使用 接收Callable参数的 execute()方法，后者将会在下文中提到。</p>
-<h5 id="2-submit-Runnable"><a href="#2-submit-Runnable" class="headerlink" title="2.submit(Runnable)"></a>2.submit(Runnable)</h5><p>方法 submit(Runnable) 同样接收一个Runnable的实现作为参数，但是会返回一个Future对象。这个 Future 对象可以用于判断Runnable是否结束执行。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future future = executorService.submit(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">//如果任务结束执行则返回 null  </span><br><span class="line">System.out.println(&quot;future.get()=&quot; + future.get());</span><br></pre></td></tr></table></figure></p>
-<h5 id="3-submit-Callable"><a href="#3-submit-Callable" class="headerlink" title="3.submit(Callable)"></a>3.submit(Callable)</h5><p>方法submit(Callable)和方法submit(Runnable)比较类似，但是区别则在于它们接收不同的参数类型。Callable的实例与Runnable的实例很类似，但是Callable的call()方法可以返回一个结果。方法Runnable.run() 则不能返回结果。Callable的返回值可以从方法submit(Callable)返回的 Future 对象中获取实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future future = executorService.submit(new Callable()&#123;  </span><br><span class="line">    public Object call() throws Exception &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous Callable&quot;);  </span><br><span class="line">        return &quot;Callable Result&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">System.out.println(&quot;future.get() = &quot; + future.get());</span><br></pre></td></tr></table></figure></p>
-<h5 id="4-inVokeAny"><a href="#4-inVokeAny" class="headerlink" title="4.inVokeAny()"></a>4.inVokeAny()</h5><p>方法invokeAny()接收一个包含Callable对象的集合作为参数。调用该方法不会返回Future对象，而是返回集合中某一个Callable对象的结果，而且无法保证调用之后返回的结果是哪一个Callable，只知道它是这些 Callable中一个执行结束的 Callable 对象。如果一个任务运行完毕或者抛出异常，方法会取消其它的 Callable 的执行。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();   </span><br><span class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();   </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 1&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 2&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 3&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);   </span><br><span class="line">String result = executorService.invokeAny(callables);   </span><br><span class="line">System.out.println(&quot;result = &quot; + result);   </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure></p>
-<h5 id="5-invokeAll"><a href="#5-invokeAll" class="headerlink" title="5.invokeAll()"></a>5.invokeAll()</h5><p>方法invokeAll()会调用存在于参数集合中的所有Callable对象，并且返回一个包含Future对象的集合，你可以通过这个返回的集合来管理每个Callable的执行结果。需要注意的是，任务有可能因为异常而导致运行结束，所以它可能并不是真的成功运行了。但是我们没有办法通过Future对象来了解到这个差异。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();    </span><br><span class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();   </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 1&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 2&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 3&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);    </span><br><span class="line">String result = executorService.invokeAny(callables);    </span><br><span class="line">System.out.println(&quot;result = &quot; + result);    </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure></p>
-<h3 id="ExecutorService的关闭"><a href="#ExecutorService的关闭" class="headerlink" title="ExecutorService的关闭"></a>ExecutorService的关闭</h3><p>当我们使用完成ExecutorService之后应该关闭它，否则它里面的线程会一直处于运行状态。<br>ExecutorService的关闭，可以调用ExecutorService.shutdown()方法。在调用shutdown()方法之后，ExecutorService不会立即关闭，但是它不再接收新的任务，直到当前所有线程执行完成才会关闭，所有在shutdown()执行之前提交的任务都会被执行。<br>如果想立即关闭ExecutorService，可以调用ExecutorService.shutdownNow()方法。这个动作将跳过所有正在执行的任务和被提交还没有执行的任务。但是它并不对正在执行的任务做任何保证，有可能它们都会停止，也有可能执行完成。</p>
-<h4 id="等待ExecutorService的结束"><a href="#等待ExecutorService的结束" class="headerlink" title="等待ExecutorService的结束"></a>等待ExecutorService的结束</h4><p>由于调用shutdown方法，ExecutorService不是立即关闭，那么，怎么知道ExecutorService的线程池里的线程都执行完毕了呢？<br>可以使用awaitTermination方法检查，例子如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService threadPool = Executors.newCachedThreadPool();</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;Asynchronous task1&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(20 * 1000); // 休眠20秒</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(60 * 1000);</span><br><span class="line">			&#125; catch (InterruptedException e1) &#123;</span><br><span class="line">				e1.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;Asynchronous task2&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(4 * 1000); // 休眠4秒</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(60 * 1000);</span><br><span class="line">			&#125; catch (InterruptedException e1) &#123;</span><br><span class="line">				e1.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;Asynchronous task3&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 启动一次顺序关闭，执行以前提交的任务，但不接受新任务。</span><br><span class="line">threadPool.shutdown();</span><br><span class="line">try &#123;</span><br><span class="line">	// 请求关闭、发生超时或者当前线程中断，无论哪一个首先发生之后，都将导致阻塞，直到所有任务完成执行</span><br><span class="line">	// 设置最长等待10秒</span><br><span class="line">	while (!threadPool.awaitTermination(10, TimeUnit.SECONDS)) &#123;</span><br><span class="line">		System.out.println(&quot;&gt;&gt;&gt;&gt;线程尚未结束&gt;&gt;&gt;&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(&quot;&gt;&gt;&gt;&gt;线程已结束!&gt;&gt;&gt;&gt;&quot;);</span><br><span class="line">&#125; catch (InterruptedException e) &#123;</span><br><span class="line">	System.out.println(&quot;异常:&quot; + e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Asynchronous task1</span><br><span class="line">Asynchronous task3</span><br><span class="line">&gt;&gt;&gt;&gt;线程尚未结束&gt;&gt;&gt;&gt;</span><br><span class="line">Asynchronous task2</span><br><span class="line">&gt;&gt;&gt;&gt;线程已结束!&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢打赏！<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/tb.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/wx.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
+
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/01/02/Synchronized/" class="archive-article-date">
+  	<time datetime="2018-01-02T03:51:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-02</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/01/02/Synchronized/">Synchronized的用法</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -281,7 +252,7 @@
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -294,112 +265,20 @@
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:www.hzzzy.top/2017/11/27/ExecutorService/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/11/28/maven-profile/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          利用maven-profile实现配置分离多环境切换
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/11/26/maven-order/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">maven生产中的常用命令</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2018/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -423,8 +302,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,20 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.hzzzy.top">
-  <title>ExecutorService使用 | Hzzzy的博客</title>
+  <title>Spark基本架构及原理 | Hzzzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
-<meta name="keywords" content="java">
+  <meta name="description" content="Apache Spark是一个围绕速度、易用性和复杂分析构建的大数据处理框架，与Hadoop和Storm等其它大数据技术相比，Spark有如下优势： 1、Spark提供了一个全面、统一的框架用于管理各种有着不同性质（文本数据、图表数据等）的数据集和批量数据/实时的流数据的大数据处理需求； 2、Spark是基于内存计算框架，运行速度提升100倍，甚至在磁盘上的运行速度提升10倍。">
+<meta name="keywords" content="spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ExecutorService使用">
-<meta property="og:url" content="www.hzzzy.top/2017/11/27/ExecutorService/index.html">
+<meta property="og:title" content="Spark基本架构及原理">
+<meta property="og:url" content="www.hzzzy.top/2018/11/28/spark/index.html">
 <meta property="og:site_name" content="Hzzzy的博客">
-<meta property="og:description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
+<meta property="og:description" content="Apache Spark是一个围绕速度、易用性和复杂分析构建的大数据处理框架，与Hadoop和Storm等其它大数据技术相比，Spark有如下优势： 1、Spark提供了一个全面、统一的框架用于管理各种有着不同性质（文本数据、图表数据等）的数据集和批量数据/实时的流数据的大数据处理需求； 2、Spark是基于内存计算框架，运行速度提升100倍，甚至在磁盘上的运行速度提升10倍。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-11-28T08:58:36.000Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm3ookdaj30e509r74m.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm4e0ij6j30e508wmx9.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpgly1fxnm567ddqj30fu09zjrr.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm7644x8j30fj0cht9f.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm88osh0j30g009nt8y.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm8o6m7fj30es09c0tb.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm9la88hj30g50e6aas.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnmabye2dj30fn0djwf7.jpg">
+<meta property="og:updated_time" content="2018-11-28T03:31:05.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ExecutorService使用">
-<meta name="twitter:description" content="java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。 Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command) ExecutorService：是一个比Executor使用更广泛的子类接口，其">
+<meta name="twitter:title" content="Spark基本架构及原理">
+<meta name="twitter:description" content="Apache Spark是一个围绕速度、易用性和复杂分析构建的大数据处理框架，与Hadoop和Storm等其它大数据技术相比，Spark有如下优势： 1、Spark提供了一个全面、统一的框架用于管理各种有着不同性质（文本数据、图表数据等）的数据集和批量数据/实时的流数据的大数据处理需求； 2、Spark是基于内存计算框架，运行速度提升100倍，甚至在磁盘上的运行速度提升10倍。">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm3ookdaj30e509r74m.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hzzzy的博客" type="application/atom+xml">
   
@@ -167,104 +176,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ExecutorService" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-spark" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ExecutorService使用
+      Spark基本架构及原理
     </h1>
   
 
         
-        <a href="/2017/11/27/ExecutorService/" class="archive-article-date">
-  	<time datetime="2017-11-27T03:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+        <a href="/2018/11/28/spark/" class="archive-article-date">
+  	<time datetime="2018-11-28T03:19:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<ul>
-<li>java.util.concurrent.ExecutorService是Java中对线程池定义的一个接口，ExecutorService继承Executor。</li>
-<li>Executor：一个接口，其定义了一个接收Runnable对象的方法executor，其方法签名为executor(Runnable command)</li>
-<li>ExecutorService：是一个比Executor使用更广泛的子类接口，其提供了生命周期管理的方法，以及可跟踪一个或多个异步任务执行状况返回Future的方法。</li>
-<li>事实上，在java.util.concurrent 包中的 ExecutorService 的实现就是一个线程池的实现。</li>
-</ul>
-</blockquote>
+        <p>Apache Spark是一个围绕速度、易用性和复杂分析构建的大数据处理框架，与Hadoop和Storm等其它大数据技术相比，Spark有如下优势：</p>
+<p>1、Spark提供了一个全面、统一的框架用于管理各种有着不同性质（文本数据、图表数据等）的数据集和批量数据/实时的流数据的大数据处理需求；</p>
+<p>2、Spark是基于内存计算框架，运行速度提升100倍，甚至在磁盘上的运行速度提升10倍。</p>
 <a id="more"></a>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般情况下，多线程的实现或者异步执行任务是通过继承Thread类或Runnable接口实现。但这种方式缺点很明显：</p>
-<ul>
-<li>线程缺乏统一管理，可能无限制新建线程，相互之间竞争。</li>
-<li>性能差。</li>
-<li>容易造成死机，资源耗尽。</li>
-</ul>
-<p>然而，使用线程池的好处则不言而喻了。</p>
-<ul>
-<li>其支持多种不同类型的任务执行策略。</li>
-<li>提供对生命周期的支持，以及统计信息收集，应用程序管理机制和性能监视等机制。</li>
-<li>提供定时执行、定期执行、单线程、并发数控制等功能。</li>
-<li>有效控制最大并发线程数，提高系统资源的使用率。</li>
-</ul>
-<h3 id="最简单的ExecutorService样例"><a href="#最简单的ExecutorService样例" class="headerlink" title="最简单的ExecutorService样例"></a>最简单的ExecutorService样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newFixedThreadPool(5);   </span><br><span class="line">executorService.execute(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure>
-<p>上述代码使用newFixedThreadPool() 工厂方法创建一个 ExecutorService，创建了容纳5个线程的线程池。<br>然后，向 execute() 方法中传一个异步的 Runnable 接口的实现，这样做会让 ExecutorService 线程池中的某个线程执行这个传递进来的 Runnable 线程。<br>你会发现ExecutorService是通过Executors创建的，那Executors到底是什么鬼来的呢？</p>
-<blockquote>
-<p>Executors：提供了一系列静态工厂方法用于创建各种线程池。</p>
-</blockquote>
-<p>此外Executors一共可以创建下面这<strong>四类</strong>线程池：</p>
-<ul>
-<li>newCachedThreadPool 创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。 </li>
-<li>newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。 </li>
-<li>newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。 </li>
-<li>newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</li>
-</ul>
-<h3 id="ExecutorService的执行"><a href="#ExecutorService的执行" class="headerlink" title="ExecutorService的执行"></a>ExecutorService的执行</h3><p>ExecutorService有如下几个执行方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- execute(Runnable)</span><br><span class="line">- submit(Runnable)</span><br><span class="line">- submit(Callable)</span><br><span class="line">- invokeAny(...)</span><br><span class="line">- invokeAll(...)</span><br></pre></td></tr></table></figure></p>
-<h5 id="1-execute-Runnable"><a href="#1-execute-Runnable" class="headerlink" title="1. execute(Runnable)"></a>1. execute(Runnable)</h5><p>方法 execute(Runnable) 接收一个 java.lang.Runnable 对象作为参数，并且以异步的方式执行它。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();   </span><br><span class="line">executorService.execute(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);       </span><br><span class="line">executorService.shutdown()</span><br></pre></td></tr></table></figure></p>
-<p>使用这种方式没有办法获取执行Runnable之后的结果，如果你希望获取运行之后的返回值，就必须使用 接收Callable参数的 execute()方法，后者将会在下文中提到。</p>
-<h5 id="2-submit-Runnable"><a href="#2-submit-Runnable" class="headerlink" title="2.submit(Runnable)"></a>2.submit(Runnable)</h5><p>方法 submit(Runnable) 同样接收一个Runnable的实现作为参数，但是会返回一个Future对象。这个 Future 对象可以用于判断Runnable是否结束执行。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future future = executorService.submit(new Runnable() &#123;  </span><br><span class="line">    public void run() &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous task&quot;);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">//如果任务结束执行则返回 null  </span><br><span class="line">System.out.println(&quot;future.get()=&quot; + future.get());</span><br></pre></td></tr></table></figure></p>
-<h5 id="3-submit-Callable"><a href="#3-submit-Callable" class="headerlink" title="3.submit(Callable)"></a>3.submit(Callable)</h5><p>方法submit(Callable)和方法submit(Runnable)比较类似，但是区别则在于它们接收不同的参数类型。Callable的实例与Runnable的实例很类似，但是Callable的call()方法可以返回一个结果。方法Runnable.run() 则不能返回结果。Callable的返回值可以从方法submit(Callable)返回的 Future 对象中获取实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Future future = executorService.submit(new Callable()&#123;  </span><br><span class="line">    public Object call() throws Exception &#123;  </span><br><span class="line">        System.out.println(&quot;Asynchronous Callable&quot;);  </span><br><span class="line">        return &quot;Callable Result&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">System.out.println(&quot;future.get() = &quot; + future.get());</span><br></pre></td></tr></table></figure></p>
-<h5 id="4-inVokeAny"><a href="#4-inVokeAny" class="headerlink" title="4.inVokeAny()"></a>4.inVokeAny()</h5><p>方法invokeAny()接收一个包含Callable对象的集合作为参数。调用该方法不会返回Future对象，而是返回集合中某一个Callable对象的结果，而且无法保证调用之后返回的结果是哪一个Callable，只知道它是这些 Callable中一个执行结束的 Callable 对象。如果一个任务运行完毕或者抛出异常，方法会取消其它的 Callable 的执行。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();   </span><br><span class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();   </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 1&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 2&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 3&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);   </span><br><span class="line">String result = executorService.invokeAny(callables);   </span><br><span class="line">System.out.println(&quot;result = &quot; + result);   </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure></p>
-<h5 id="5-invokeAll"><a href="#5-invokeAll" class="headerlink" title="5.invokeAll()"></a>5.invokeAll()</h5><p>方法invokeAll()会调用存在于参数集合中的所有Callable对象，并且返回一个包含Future对象的集合，你可以通过这个返回的集合来管理每个Callable的执行结果。需要注意的是，任务有可能因为异常而导致运行结束，所以它可能并不是真的成功运行了。但是我们没有办法通过Future对象来了解到这个差异。实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();    </span><br><span class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();   </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 1&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 2&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);  </span><br><span class="line">callables.add(new Callable&lt;String&gt;() &#123;  </span><br><span class="line">    public String call() throws Exception &#123;  </span><br><span class="line">        return &quot;Task 3&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;);    </span><br><span class="line">String result = executorService.invokeAny(callables);    </span><br><span class="line">System.out.println(&quot;result = &quot; + result);    </span><br><span class="line">executorService.shutdown();</span><br></pre></td></tr></table></figure></p>
-<h3 id="ExecutorService的关闭"><a href="#ExecutorService的关闭" class="headerlink" title="ExecutorService的关闭"></a>ExecutorService的关闭</h3><p>当我们使用完成ExecutorService之后应该关闭它，否则它里面的线程会一直处于运行状态。<br>ExecutorService的关闭，可以调用ExecutorService.shutdown()方法。在调用shutdown()方法之后，ExecutorService不会立即关闭，但是它不再接收新的任务，直到当前所有线程执行完成才会关闭，所有在shutdown()执行之前提交的任务都会被执行。<br>如果想立即关闭ExecutorService，可以调用ExecutorService.shutdownNow()方法。这个动作将跳过所有正在执行的任务和被提交还没有执行的任务。但是它并不对正在执行的任务做任何保证，有可能它们都会停止，也有可能执行完成。</p>
-<h4 id="等待ExecutorService的结束"><a href="#等待ExecutorService的结束" class="headerlink" title="等待ExecutorService的结束"></a>等待ExecutorService的结束</h4><p>由于调用shutdown方法，ExecutorService不是立即关闭，那么，怎么知道ExecutorService的线程池里的线程都执行完毕了呢？<br>可以使用awaitTermination方法检查，例子如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService threadPool = Executors.newCachedThreadPool();</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;Asynchronous task1&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(20 * 1000); // 休眠20秒</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(60 * 1000);</span><br><span class="line">			&#125; catch (InterruptedException e1) &#123;</span><br><span class="line">				e1.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;Asynchronous task2&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">threadPool.execute(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(4 * 1000); // 休眠4秒</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(60 * 1000);</span><br><span class="line">			&#125; catch (InterruptedException e1) &#123;</span><br><span class="line">				e1.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;Asynchronous task3&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 启动一次顺序关闭，执行以前提交的任务，但不接受新任务。</span><br><span class="line">threadPool.shutdown();</span><br><span class="line">try &#123;</span><br><span class="line">	// 请求关闭、发生超时或者当前线程中断，无论哪一个首先发生之后，都将导致阻塞，直到所有任务完成执行</span><br><span class="line">	// 设置最长等待10秒</span><br><span class="line">	while (!threadPool.awaitTermination(10, TimeUnit.SECONDS)) &#123;</span><br><span class="line">		System.out.println(&quot;&gt;&gt;&gt;&gt;线程尚未结束&gt;&gt;&gt;&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(&quot;&gt;&gt;&gt;&gt;线程已结束!&gt;&gt;&gt;&gt;&quot;);</span><br><span class="line">&#125; catch (InterruptedException e) &#123;</span><br><span class="line">	System.out.println(&quot;异常:&quot; + e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Asynchronous task1</span><br><span class="line">Asynchronous task3</span><br><span class="line">&gt;&gt;&gt;&gt;线程尚未结束&gt;&gt;&gt;&gt;</span><br><span class="line">Asynchronous task2</span><br><span class="line">&gt;&gt;&gt;&gt;线程已结束!&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="一、基本架构"><a href="#一、基本架构" class="headerlink" title="一、基本架构"></a>一、基本架构</h2><p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm3ookdaj30e509r74m.jpg" alt=""></p>
+<p>Spark Core：包含Spark的基本功能；尤其是定义RDD的API、操作以及这两者上的动作。其他Spark的库都是构建在RDD和Spark Core之上的。<br>Spark SQL：提供通过Apache Hive的HQL查询语言与Spark进行交互的API；每个数据库表被当做一个RDD，Spark SQL查询被转换为Spark操作。<br>Spark Streaming：对实时数据进行处理和控制；基于RDD操作。<br>MLlib：一个常用机器学习算法库，算法被实现为对RDD的Spark操作。<br>GraphX：控制图、并行图操作和计算的一组算法和工具的集合。<br><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm4e0ij6j30e508wmx9.jpg" alt=""></p>
+<p>ClusterManager：在standalone模式中即为Master主节点，控制整个集群，监控worker。在YARN模式中为资源管理器（ResourceManager）。<br>Worker节点：从节点，负责控制计算节点，启动Executor或者Driver。<br>Driver：运行Application的main()函数。<br>Executor：执行器，是为某个Application运行在Worker Node上的一个进程。</p>
+<h2 id="二、Spark运行流程"><a href="#二、Spark运行流程" class="headerlink" title="二、Spark运行流程"></a>二、Spark运行流程</h2><p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1fxnm567ddqj30fu09zjrr.jpg" alt=""></p>
+<p>1、构建Spark Application的运行环境，启动SparkContext；<br>2、SparkContext向资源管理器（可以是Standalone、Mesos、YARN）申请运行Executor资源，并启动StandaloneExecutorBackend；<br>3、Executor向SparkContext申请Task；<br>4、SparkContext将应用程序分发给Executor；<br>5、SparkContext构建DAG图，将DAG图分解成Stage，将Taskset发送给Task Scheduler，最后由Task Scheduler将Task发送给Executor运行；<br>6、Task在Executor运行，运行完释放所有资源。</p>
+<p>Spark运行特点：</p>
+<p>1、每个Application获取专属的Executor进程，该进程在Application期间一直驻留，并以多线程的方式运行Task。这意味着Spark Application不能跨应用程序共享数据，除非将数据写入外部存储系统；<br>2、Spark与资源管理器无关，只要能够获取Executor进程并能保持互相通信即可；<br>3、提交SparkContext的Client应该靠近Worker节点（运行Executor的节点），最好是在同一个Rack里，因为Spark Application运行过程中SparkContext和Executor之间有大量的信息交换；<br>4、Task采用数据本地性和推测执行的执行机制。</p>
+<h2 id="三、常用术语"><a href="#三、常用术语" class="headerlink" title="三、常用术语"></a>三、常用术语</h2><p>Application：Application都是指用户编写的Spark应用程序，其中包括一个Driver功能代码和分布在集群中多个节点上运行的Executor代码；<br>Driver：运行上述Application的main函数并创建SparkContext，创建SparkContext的目的是为了准备Spark应用程序的运行环境，在Spark中由SparkContext负责与Cluster Manager通信，进行资源申请、任务的分配和监控等，当Executor运行完毕后，Driver同时负责SparkContext关闭，通常用SparkContext代表Driver；<br>Executor：某个Application运行在worker节点上的一个进程，该进程负责运行某些Task，并且负责将数据存储到内存或磁盘上，每个Application都有各自独立的一批Executor，在Spark on Yarn模式下，其进程名称为CoarseGrainedExecutorBackend。一个CoarseGrainedExecutorBackend有且仅有一个Executor对象，负责将Task包装成TaskRunner，并从线程池中抽取一个空闲线程运行Task，每个CoarseGrainedExecutorBackend能并行运行Task数量取决于分配给它的CPU个数。<br>ClusterManager：指的是集群上获取资源的外部服务。目前有三种类型：<br> 1、Standalone：spark原生的资源管理，有master负责资源的分配；<br> 2、Apache Mesos：与Hadoop MR兼容性良好的一种资源调度框架；<br> 3、Hadoop Yarn：Yarn的ResourceManager；<br>Worker：集群中任何可以运行Application代码的节点，在Standalone模式中指的是通过slave文件配置的Worker节点，在Spark Yarn模式下就是NodeManager节点。<br>Task：被送到某个Executor的工作单元，和Hadoop MR中的MapTask和ReduceTask 概念一样，是运行Application的基本单位，多个Task组成一个Stage，而Task的调度和管理等是由TaskScheduler负责。<br>Job：包含多个Task组成的并行计算，往往由Spark Action触发生成，一个Application中往往会产生多个Job。<br>Stage：每个Job会被拆分成多组Task作为一个Taskset，其名称为Stage，Stage的划分和调度是由DAGScheduler来负责，Stage有非最终的Stage（Shuffle Map Stage）和最终的Stage（Result Stage）两种，Stage的边界就是发生shuffle的地方。<br>DAGScheduler：根据Job构建基于Stage的DAG（有向无环图），并提交Stage给TaskScheduler。其划分Stage的依据是RDD之间的依赖关系找出开销最小的调度方法。<br>TaskScheduler：将Taskset提交给Worker运行，每个Executor运行那些Task由它分配，TaskScheduler维护所有Taskset，当Executor向Driver发生心跳时，TaskScheduler会根据资源剩余情况分配相应的Task。另外TaskScheduler还维护着所有Task的运行标签，重试失败的Task。在不同运行模式中任务调度器具体为：<br> 1、Spark on Standalone模式为TaskScheduler<br> 2、Yarn-Client模式为YarnClientClusterScheduler<br> 3、Yarn-Cluster模式为YarnClusterScheduler<br><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm7644x8j30fj0cht9f.jpg" alt=""></p>
+<p>Job=多个Stage，Stage=多个同种Task，Task分为ShuffleMapTask和ResultTask，Dependency分为ShuffleDependency和NarrowDependency。</p>
+<h2 id="四、运行模式"><a href="#四、运行模式" class="headerlink" title="四、运行模式"></a>四、运行模式</h2><p>Spark的运行模式多种多样，灵活可变，部署在单机上时，既可以用本地模式运行，也可以用伪分布式模式运行，而当以分布式集群方式部署时，有众多的运行模式可供选择。底层的资源调度可依赖外部资源调度框架，也可以使用Spark内建的Standalone模式，对于外部资源调度框架，目前相对稳定的有Mesos、Hadoop YARN两种。<br>本地模式：常用于本地开发测试，分为local和local cluster。<br>Standalone：独立集群运行模式<br> 1、Spark自带的资源调度框架；<br> 2、采用Master/Slaves的典型结构，选用ZooKeeper来实现Master的HA；<br> 3、架构图如下：<br><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm88osh0j30g009nt8y.jpg" alt=""><br>该模式主要的节点有Client节点、Master节点和Worker节点。其中Driver既可以运行在Master节点上，也可以运行在本地Client端。当用spark-shell交互式工具提交Spark的Job时，Driver在Master节点上运行；当使用spark-submit工具提交Spark的Job或者在IDEA开发工具上使用“ new SparkConf.setManager(“spark://master:7077”) ”方式运行Spark任务时，Driver是运行在本地Client端上。其运行过程如下图：<br><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm8o6m7fj30es09c0tb.jpg" alt=""></p>
+<p>1、SparkContext连接到Master，向Master注册并申请资源（CPU Core和Memory）；<br>2、Master根据SparkContext的资源申请要求和Worker心跳周期内报告的信息决定在哪个Worker上分配资源，然后在该Worker上获取资源，然后启动StandaloneExecutorBackend；<br>3、StandaloneExecutorBackend向SparkContext注册；<br>4、SparkContext将Application代码发送给StandaloneExecutorBackend，并且SparkContext解释Application代码，构建DAG图，并提交给DAGScheduler分解成Stage（当碰到Action操作时，就会催生Job，每个Job中包含1个或多个Stage，Stage一般在获取外部数据和shuffle之前产生），然后以Stage（或者称为Taskset）提交给TaskScheduler，TaskScheduler负责将Task分配到相应的Worker，最后提交给StandaloneExecutorBackend执行；<br>5、StandaloneExecutorBackend会建立Executor线程池，开始执行Task，并向SparkContext报告，直至Task完成；<br>6、所有Task完成后，SparkContext向Master注销，释放资源。<br>Yarn：资源调度管理器（详情请参考《YARN框架原理及运行机制》）<br>Spark on Yarn模式根据Driver在集群中的位置分为两种模式：Yarn-Client和Yarn-Cluster（或者称为Yarn-Standalone）。Yarn-Client模式中，Driver是运行在本地客户端上，可以通过WebUI访问Driver的状态，默认是<a href="http://hostname:4040访问。" target="_blank" rel="noopener">http://hostname:4040访问。</a><br>Yarn-Client模式：<br><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnm9la88hj30g50e6aas.jpg" alt=""></p>
+<p>1、Spark Yarn Client向Yarn的ResourceManager申请启动ApplicationMaster，同时在SparkContext初始化中创建DAGScheduler和TaskScheduler等，由于选择的是Yarn-Client模式，程序会选择YarnClientClusterScheduler和CoarseGrainedExecutorBackend；<br>2、ResourceManager收到请求后，在集群中选择一个NodeManager为该程序分配第一个Container，要求它在这个Container中启动应用程序的ApplicationMaster，与Yarn-Cluster区别的是该ApplicationMaster不运行SparkContext，只与SparkContext进行联系进行资源的分派；<br>3、Client中的SparkContext初始化完毕后，与ApplicationMaster建立通讯，向ResourceManager注册，根据任务信息向ResourceManager申请资源（Container）。<br>4、一旦ApplicationMaster申请到资源（也就是Container）后，便与对应的NodeManager通信，要求它在获得的Container中启动CoarseGrainedExecutorBackend，CoarseGrainedExecutorBackend启动后会向Client中的SparkContext注册并申请Task；<br>5、Client中的SparkContext分配Task给CoarseGrainedExecutorBackend执行，CoarseGrainedExecutorBackend运行Task并向Driver汇报运行的状态和进度，让Client随时掌握各个任务的运行状态，从而可以在任务失败时重启任务；<br>6、应用程序运行完成后，Client的SparkContext向ResourceManager申请注销并关闭自己。<br>Yarn-Cluster模式：<br>在Yarn-Cluster模式中，当用户向Yarn提交一个应用程序后，Yarn将分两个阶段运行该程序：<br>1、第一阶段把Spark的Driver作为一个ApplicationMaster在Yarn集群中先启动；<br>2、第二阶段由ApplicationMaster创建应用程序，然后为它向ResourceManager申请资源，并启动Executor来运行Task，同时监控它的整个运行过程。</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1fxnmabye2dj30fn0djwf7.jpg" alt=""></p>
+<p>1、Spark Yarn Client向Yarn提交应用程序，包括ApplicationMaster程序、启动ApplicationMaster的命令、需要在Executor运行的程序等；<br>2、ResourceManager收到请求后，在集群中选择一个NodeManager为该应用程序分配第一个Container，要求它在这个Container中启动应用程序的ApplicationMaster，其中ApplicationMaster进行SparkContext等的初始化；<br>3、ApplicationMaster向ResourceManager注册，这样用户可以直接通过ResourceManager查看应用程序的运行状态，然后它将采用轮询的方式通过RPC协议为各个任务申请资源，并监控他们的运行状态直到运行结束；<br>4、一旦ApplicationMaster申请到资源（也就是Container）后，便与对应的NodeManager通信，要求它在获得Container中启动CoarseGrainedExecutorBackend，CoarseGrainedExecutorBackend启动后会向ApplicationMaster中的SparkContext注册并申请Task；<br>5、ApplicationMaster中的SparkContext分配Task给CoarseGrainedExecutorBackend执行，CoarseGrainedExecutorBackend运行Task并向ApplicationMaster汇报运行的状态和进度，以让ApplicationMaster随时掌握各个任务的运行状态，从而在任务失败时重启任务；<br>6、应用程序运行完成后，ApplicationMaster向ResourceManager申请注销并关闭自己。</p>
 
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢打赏！<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/tb.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/wx.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -275,7 +227,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spark</a>
         		</li>
       		
 		</ul>
@@ -287,7 +239,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
@@ -342,7 +294,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:www.hzzzy.top/2017/11/27/ExecutorService/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:www.hzzzy.top/2018/11/28/spark/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -356,18 +308,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/28/maven-profile/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          利用maven-profile实现配置分离多环境切换
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/26/maven-order/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">maven生产中的常用命令</div>
+    <a href="/2018/11/28/kafka/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kafka技术原理</div>
       <i class="icon-circle-right"></i>
     </a>
   
