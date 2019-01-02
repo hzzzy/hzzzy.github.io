@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.hzzzy.top">
-  <title>Tag: maven | Hzzzy的博客</title>
+  <title>JavaWeb 过滤器跟拦截器的区别和使用 | Hzzzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hzzzy的博客">
-<meta property="og:url" content="www.hzzzy.top/tags/maven/index.html">
+  <meta name="description" content="一、过滤器1.什么是过滤器？  过滤器是一个程序，它先于与之相关的servlet或JSP页面运行在服务器上。过滤器可附加到一个或多个servlet或JSP页面上，并且可以检查进入这些资源的请求信息。在这之后，过滤器可以作如下的选择：①以常规的方式调用资源（即，调用servlet或JSP页面）。②利用修改过的请求信息调用资源。③调用资源，但在发送响应到客户机前对其进行修改。④阻止该资源调用，代之以转">
+<meta name="keywords" content="Filter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb 过滤器跟拦截器的区别和使用">
+<meta property="og:url" content="www.hzzzy.top/2019/01/02/filterandlistener/index.html">
 <meta property="og:site_name" content="Hzzzy的博客">
+<meta property="og:description" content="一、过滤器1.什么是过滤器？  过滤器是一个程序，它先于与之相关的servlet或JSP页面运行在服务器上。过滤器可附加到一个或多个servlet或JSP页面上，并且可以检查进入这些资源的请求信息。在这之后，过滤器可以作如下的选择：①以常规的方式调用资源（即，调用servlet或JSP页面）。②利用修改过的请求信息调用资源。③调用资源，但在发送响应到客户机前对其进行修改。④阻止该资源调用，代之以转">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-02T02:18:34.516Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hzzzy的博客">
+<meta name="twitter:title" content="JavaWeb 过滤器跟拦截器的区别和使用">
+<meta name="twitter:description" content="一、过滤器1.什么是过滤器？  过滤器是一个程序，它先于与之相关的servlet或JSP页面运行在服务器上。过滤器可附加到一个或多个servlet或JSP页面上，并且可以检查进入这些资源的请求信息。在这之后，过滤器可以作如下的选择：①以常规的方式调用资源（即，调用servlet或JSP页面）。②利用修改过的请求信息调用资源。③调用资源，但在发送响应到客户机前对其进行修改。④阻止该资源调用，代之以转">
   
     <link rel="alternative" href="/atom.xml" title="Hzzzy的博客" type="application/atom+xml">
   
@@ -162,48 +167,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-filterandlistener" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/maven-profile/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:39:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/maven-profile/">利用maven-profile实现配置分离多环境切换</a>
+    <h1 class="article-title" itemprop="name">
+      JavaWeb 过滤器跟拦截器的区别和使用
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/01/02/filterandlistener/" class="archive-article-date">
+  	<time datetime="2019-01-02T01:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、过滤器"><a href="#一、过滤器" class="headerlink" title="一、过滤器"></a>一、过滤器</h3><p>1.什么是过滤器？</p>
+<blockquote>
+<p>过滤器是一个程序，它先于与之相关的servlet或JSP页面运行在服务器上。过滤器可附加到一个或多个servlet或JSP页面上，并且可以检查进入这些资源的请求信息。在这之后，过滤器可以作如下的选择：<br>①以常规的方式调用资源（即，调用servlet或JSP页面）。<br>②利用修改过的请求信息调用资源。<br>③调用资源，但在发送响应到客户机前对其进行修改。<br>④阻止该资源调用，代之以转到其他的资源，返回一个特定的状态代码或生成替换输出。<br>2.Servlet过滤器的基本原理：<br>在Servlet作为过滤器使用时，它可以对客户的请求进行处理。处理完成后，它会交给下一个过滤器处理，这样，客户的请求在过滤链里逐个处理，直到请求发送到目标为止。例如，某网站里有提交“修改的注册信息”的网页，当用户填写完修改信息并提交后，服务器在进行处理时需要做两项工作：判断客户端的会话是否有效；对提交的数据进行统一编码。这两项工作可以在由两个过滤器组成的过滤链里进行处理。当过滤器处理成功后，把提交的数据发送到最终目标；如果过滤器处理不成功，将把视图派发到指定的错误页面。<br>3.示例代码<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在web.xml里面配置自定义的过滤器 </span><br><span class="line">&lt;filter&gt; </span><br><span class="line">	&lt;filter-name&gt;Redirect Filter&lt;/filter-name&gt; </span><br><span class="line">	&lt;filter-class&gt;com.xx.filter.RedirectFilter&lt;/filter-class&gt; </span><br><span class="line">&lt;/filter&gt; </span><br><span class="line">&lt;filter-mapping&gt; </span><br><span class="line">	&lt;filter-name&gt;Redirect Filter&lt;/filter-name&gt; </span><br><span class="line">	&lt;url-pattern&gt;/xx/xx/*&lt;/url-pattern&gt; </span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">如何编写自定义的过滤器 </span><br><span class="line">public class RedirectFilter implements Filter &#123; </span><br><span class="line">	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException &#123; </span><br><span class="line">	// 获取URL </span><br><span class="line">	Long startTime = null; </span><br><span class="line">	if (log.isDebugEnabled()) &#123;</span><br><span class="line">		startTime = System.currentTimeMillis(); </span><br><span class="line">	&#125; </span><br><span class="line">	HttpServletRequest httpRequest = (HttpServletRequest) request; </span><br><span class="line">	String url = httpRequest.getRequestURL().toString(); </span><br><span class="line">	if (url == null || url.trim().length() == 0) &#123; </span><br><span class="line">		return; </span><br><span class="line">	&#125; </span><br><span class="line">	if (url.indexOf(luceneCreateMapping) != -1 || url.indexOf(luceneSearchMapping) != -1) &#123; </span><br><span class="line">		doFilterForxxx(request, response, url); </span><br><span class="line">	&#125; else &#123; </span><br><span class="line">		doxxxx(request, response, url); </span><br><span class="line">	&#125; if (log.isDebugEnabled()) &#123; </span><br><span class="line">		long endTime = System.currentTimeMillis(); </span><br><span class="line">		Thread currentThread = Thread.currentThread(); </span><br><span class="line">		String threadName = currentThread.getName(); </span><br><span class="line">		log.debug(&quot;[&quot; + threadName + &quot;]&quot; + &quot;&lt; &quot; + this.getClass().getName() + &quot; &quot; + url + &quot; &quot; + (endTime - startTime) + &quot; ms&quot;); &#125; </span><br><span class="line">		// 激活下一个Filter filterChain.doFilter(request, response); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例2 // 填充100个带有随机字母标签的球 </span><br><span class="line">List&lt;String&gt; array = new ArrayList&lt;&gt;(); </span><br><span class="line">Random r = new Random(); </span><br><span class="line">String[] balls = new String[]&#123;&quot;A&quot;, &quot;B&quot;, &quot;C&quot;&#125;; </span><br><span class="line">for (int i = 0; i &lt; 100; i++) </span><br><span class="line">	array.add(balls[r.nextInt(3)]); </span><br><span class="line">	</span><br><span class="line">// 只拿出B的来。不明白的自行学习Java 8 </span><br><span class="line">array = array.stream().filter(ball -&gt; ball.equals(&quot;B&quot;)).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h3 id="二、拦截器"><a href="#二、拦截器" class="headerlink" title="二、拦截器"></a>二、拦截器</h3><p>1.什么是拦截器？</p>
+<blockquote>
+<p>拦截器，在AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。拦截是AOP的一种实现策略。<br>在Webwork的中文文档的解释为——拦截器是动态拦截Action调用的对象。它提供了一种机制可以使开发者可以定义在一个action执行的前后执行的代码，也可以在一个action执行前阻止其执行。同时也是提供了一种可以提取action中可重用的部分的方式。<br>谈到拦截器，还有一个词大家应该知道——拦截器链（Interceptor Chain，在Struts 2中称为拦截器栈 Interceptor Stack）。拦截器链就是将拦截器按一定的顺序联结成一条链。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。<br>2.拦截器的实现原理：<br>大部分时候，拦截器方法都是通过代理的方式来调用的。Struts 2的拦截器实现相对简单。当请求到达Struts 2的ServletDispatcher时，Struts 2会查找配置文件，并根据其配置实例化相对的拦截器对象，然后串成一个列表（list），最后一个一个地调用列表中的拦截器。<br>3.示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在xml文件中如何定义拦截器 </span><br><span class="line">&lt;interceptors&gt; </span><br><span class="line">	&lt;interceptor name=&quot;filterIPInterceptor&quot; class=&quot;com.xxxx.web.FilterIPActionInterceptor&quot; /&gt; </span><br><span class="line">		&lt;interceptor-stack name=&quot;filterIPStack&quot;&gt; </span><br><span class="line">		&lt;interceptor-ref name=&quot;defaultStack&quot; /&gt; </span><br><span class="line">		&lt;interceptor-ref name=&quot;filterIPInterceptor&quot; /&gt; </span><br><span class="line">	&lt;/interceptor-stack&gt; </span><br><span class="line">&lt;/interceptors&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">怎么编写自定义拦截器 </span><br><span class="line">public class FilterIPActionInterceptor extends AbstractInterceptor&#123; </span><br><span class="line">	/** 日志控制. */ </span><br><span class="line">	private final Log log = LogFactory.getLog(getClass()); </span><br><span class="line">	/**</span><br><span class="line">     * @see com.opensymphony.xwork2.interceptor.AbstractInterceptor#intercept(com.opensymphony.xwork2.ActionInvocation)</span><br><span class="line">     */ </span><br><span class="line">	@Override @SuppressWarnings(&quot;unchecked&quot;) </span><br><span class="line">	public String intercept(ActionInvocation invocation) throws Exception &#123; </span><br><span class="line">		String result = null; </span><br><span class="line">		// 获得当前方法名. </span><br><span class="line">		String methodName = invocation.getInvocationContext().getName(); </span><br><span class="line">		String currIp = null; </span><br><span class="line">		try &#123; </span><br><span class="line">			if (invocation.getAction() instanceof PortletAction) &#123; </span><br><span class="line">				PortletAction action = (PortletAction) invocation.getAction(); </span><br><span class="line">				currIp = action.getRequest().getRemoteAddr(); </span><br><span class="line">			&#125; </span><br><span class="line">			String ip = ApplicationResource.getHotValue(&quot;ALLOW_CACHE_IP&quot;); </span><br><span class="line">			if (StringUtils.isBlank(ip) || StringUtils.isBlank(currIp)) &#123; </span><br><span class="line">				log.error(&quot;允许刷新的IP不存在或当前请求的IP非法.&quot;); </span><br><span class="line">				throw new NoAllowIPException(); </span><br><span class="line">			&#125; else &#123; </span><br><span class="line">				String[] ips = ip.split(&quot;,&quot;); </span><br><span class="line">				boolean errorIp = true; </span><br><span class="line">				for (String s : ips) &#123; </span><br><span class="line">					if (s.equals(currIp)) </span><br><span class="line">						errorIp = false; </span><br><span class="line">				&#125; </span><br><span class="line">					// 判断IP </span><br><span class="line">				if (errorIp) </span><br><span class="line">					throw new NoAllowIPException(); </span><br><span class="line">			&#125; </span><br><span class="line">			result = invocation.invoke();//调用被拦截的方法 </span><br><span class="line">			&#125; catch (Exception e) &#123; </span><br><span class="line">				log.error(&quot;异常类名:&quot; + invocation.getAction().getClass()); log.error(&quot;异常方法:&quot; + methodName, e); </span><br><span class="line">				throw e; </span><br><span class="line">		&#125; </span><br><span class="line">		return result; </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">示例2</span><br><span class="line">class River &#123; </span><br><span class="line">	// 流量 </span><br><span class="line">	int volume; </span><br><span class="line">	// 总鱼数 </span><br><span class="line">	int numFish; </span><br><span class="line">&#125; </span><br><span class="line">class PowerGenerator &#123; </span><br><span class="line">	double generate (int volume) &#123; </span><br><span class="line">	// 假设每一百立方米水发一度电 </span><br><span class="line">	return volume / 100; </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">interface Interceptor &#123; </span><br><span class="line">	void intercept (River river); </span><br><span class="line">&#125; </span><br><span class="line">class SomeInterceptor implements Interceptor &#123; </span><br><span class="line">	PowerGenerator generator = new PowerGenerator(); </span><br><span class="line">	@Override </span><br><span class="line">	public void intercept (River river) &#123; </span><br><span class="line">		// 消耗了1000立方米水来发电 </span><br><span class="line">		int waterUsed = 1000; </span><br><span class="line">		// 水量减少了1000。请不要跟我讨论水电站原理的问题， </span><br><span class="line">		// 我就那么一比方 </span><br><span class="line">		river.volume -= waterUsed; </span><br><span class="line">		// 发电 </span><br><span class="line">		generator.generate (waterUsed); </span><br><span class="line">		// 拦截所有的鱼 </span><br><span class="line">		river.numFish = 0; </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">class RiverController &#123; </span><br><span class="line">	Interceptor interceptor; </span><br><span class="line">	void flow(River river) &#123; </span><br><span class="line">		// 源头积累下来的水量和鱼 </span><br><span class="line">		river.volume += 100000; </span><br><span class="line">		river.numFish += 1000 ;</span><br><span class="line">		// 经过了大坝 </span><br><span class="line">		interceptor.intercept(river); </span><br><span class="line">		// 下了点雨 </span><br><span class="line">		river.volume += 1000</span><br><span class="line">	&#125; </span><br><span class="line">	void setInterceptor (Interceptor interceptor) &#123; </span><br><span class="line">		this.interceptor = interceptor </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">class Main &#123; </span><br><span class="line">	public static void main (String args[]) &#123; </span><br><span class="line">		RiverController rc = new RiverController; </span><br><span class="line">		Interceptor inter = new SomeInterceptor(); </span><br><span class="line">		// 这一步通常叫做控制反转或依赖注入，其实也没啥子 </span><br><span class="line">		rc.setInterceptor(inter); </span><br><span class="line">		rc.flow(new River()); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="拦截器与过滤器的区别-："><a href="#拦截器与过滤器的区别-：" class="headerlink" title="拦截器与过滤器的区别 ："></a>拦截器与过滤器的区别 ：</h4><blockquote>
+<ol>
+<li>拦截器是基于java的反射机制的，而过滤器是基于函数回调。 </li>
+<li>拦截器不依赖与servlet容器，过滤器依赖与servlet容器。 </li>
+<li>拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。 </li>
+<li>拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。 </li>
+<li>在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次拦截器的代 码实现。 </li>
+<li>Filter基于回调函数，我们需要实现的filter接口中doFilter方法就是回调函数，而interceptor则基于 java本身的反射机制,这是两者最本质的区别。 </li>
+<li>Filter是依赖于servlet容器的，即只能在servlet容器中执行，很显然没有servlet容器就无法来回调 doFilter方法。而interceptor与servlet容器无关。 </li>
+<li>Filter的过滤范围比Interceptor大,Filter除了过滤请求外通过通配符可以保护页面，图片，文件等等， 而Interceptor只能过滤请求。 </li>
+<li>Filter的过滤例外一般是在加载的时候在init方法声明,而Interceptor可以通过在xml声明是guest请求还 是user请求来辨别是否过滤</li>
+</ol>
+</blockquote>
+<h3 id="三、监听器"><a href="#三、监听器" class="headerlink" title="三、监听器"></a>三、监听器</h3><p>1.监听器（Listener）：当一个事件发生的时候，你希望获得这个事件发生的详细信息，而并不想干预这个事件本身的进程，这就要用到监听器。<br>2.示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 监听器 </span><br><span class="line">interface BedListener &#123; </span><br><span class="line">	// 监听器在参数中收到了某个事件，而这个事件往往是只读的 </span><br><span class="line">	// 监听器的方法名通常以&quot;on&quot;开头 </span><br><span class="line">	void onBedSound (String sound); </span><br><span class="line">&#125; </span><br><span class="line">class Neighbor &#123; </span><br><span class="line">	BedListener listener; </span><br><span class="line">	// 依然是所谓控制反转 </span><br><span class="line">	setListener (BedListener listener) &#123; </span><br><span class="line">		this.listener = listener;</span><br><span class="line">	&#125; </span><br><span class="line">	void doInterestingStuff () &#123; </span><br><span class="line">		// 根据当地法律法规，部分内容无法显示 </span><br><span class="line">		// 将事件发送给监听器 </span><br><span class="line">		listener.onBedSound(&quot;嘿咻&quot;); </span><br><span class="line">		listener.onBedSound(&quot;oyeah&quot;); </span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line">class Main &#123; </span><br><span class="line">	public static void main (String args[]) &#123; </span><br><span class="line">		Neighbor n = new Neighbor(); </span><br><span class="line">		n.setListener (sound -&gt; generatePower()); </span><br><span class="line">		n.doInterestingStuff(); </span><br><span class="line">	&#125; </span><br><span class="line">	private static void generatePower() &#123; </span><br><span class="line">		// 根据当地法律法规，部分内容无法显示 </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Filter</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -216,66 +245,104 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:www.hzzzy.top/2019/01/02/filterandlistener/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/maven-order/" class="archive-article-date">
-  	<time datetime="2017-11-26T02:51:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/28/spark/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark基本架构及原理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/maven-order/">maven生产中的常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -298,9 +365,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
