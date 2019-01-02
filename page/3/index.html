@@ -164,38 +164,31 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-sqlldr-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-flask" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/25/sqlldr-install/">在linux下sqlldr的安装</a>
+      <a class="article-title" href="/2017/05/12/flask/">flask 初学入门</a>
     </h1>
   
 
         
-        <a href="/2017/11/25/sqlldr-install/" class="archive-article-date">
-  	<time datetime="2017-11-25T03:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
+        <a href="/2017/05/12/flask/" class="archive-article-date">
+  	<time datetime="2017-05-12T02:35:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>有时需要在某台服务器（以下简称为客服端）上安装sqlldr，方便导数据。</p>
-</blockquote>
-<p>Oracle sqlldr 的配置步骤如下：</p>
-<h3 id="1-从官方下载以下包："><a href="#1-从官方下载以下包：" class="headerlink" title="1.从官方下载以下包："></a>1.从官方下载以下包：</h3><ul>
-<li>instantclient-basic-linux.x64-11.2.0.4.0.zip</li>
-<li>instantclient-jdbc-linux.x64-11.2.0.4.0.zip</li>
-<li>instantclient-sdk-linux.x64-11.2.0.4.0.zip</li>
-<li>instantclient-sqlplus-linux.x64-11.2.0.4.0.zip</li>
-</ul>
+        <p>Flask是一个Python编写的Web 微框架，让我们可以使用Python语言快速实现一个网站或Web服务。本文参考自Flask官方文档，大部分代码引用自官方文档。</p>
+<h4 id="安装Flask"><a href="#安装Flask" class="headerlink" title="安装Flask"></a>安装Flask</h4><p>最简单方法使用pip安装<br><code>pip install flask</code><br>然后打开一个Python文件，输入下面的内容并运行该文件。然后访问localhost:5000(Flask默认端口是5000)，我们应当可以看到浏览器上输出了Hello Flask!。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route(&apos;/&apos;)</span><br><span class="line">def hello_world():</span><br><span class="line">    return &apos;Hello Flask!&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2017/11/25/sqlldr-install/#more">more >></a>
+          <a class="article-more-a" href="/2017/05/12/flask/#more">more >></a>
         
       
 
@@ -209,7 +202,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlldr</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Flask</a>
         		</li>
       		
 		</ul>
@@ -221,7 +214,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -230,463 +223,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/25/sqlldr-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-jquery-common" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/24/jquery-common/">jQuery实际生产中常用的方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/24/jquery-common/" class="archive-article-date">
-  	<time datetime="2017-11-24T12:14:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>常常忘了，这语法怎么写的，那个是怎么写的。<br>只是模糊有个影子，却又写不出个完整，最后得查一推文档，才找到自己想要的。<br>现把常用的方法收集整理成一个文档，默记。</p>
-</blockquote>
-<h3 id="1、解决自定义方法或其他类库与jQuery的冲突"><a href="#1、解决自定义方法或其他类库与jQuery的冲突" class="headerlink" title="1、解决自定义方法或其他类库与jQuery的冲突"></a>1、解决自定义方法或其他类库与jQuery的冲突</h3><p>很多时候我们自己定义了$(id)方法来获取一个元素，或者其他的一些js类库如prototype也都定义了$方法，如果同时把这些内容放在一起就会引起变量方法定义冲突，Jquery对此专门提供了方法用于解决此问题。<br>使用jquery中的jQuery.noConflict();方法即可把变量$的控制权让渡给第一个实现它的那个库或之前自定义的$方法。之后应用Jquery的时候只要将所有的$换成jQuery即可，如原来引用对象方法$(“#msg”)改为jQuery(“#msg”)。<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jQuery.noConflict(); </span><br><span class="line">// 开始使用jQuery </span><br><span class="line">jQuery(&quot;div p&quot;).hide(); </span><br><span class="line">// 使用其他库的 $() </span><br><span class="line">$(&quot;content&quot;).style.display = &apos;none&apos;;</span><br></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2017/11/24/jquery-common/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jQuery</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/24/jquery-common/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java-init-order" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/23/java-init-order/">java类的初始化顺序</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/23/java-init-order/" class="archive-article-date">
-  	<time datetime="2017-11-23T06:42:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>1、对于静态变量、静态初始化块、变量、初始化块、构造器，他们的初始化顺序是怎样的呢？</p>
-</blockquote>
-<p>下面以代码测试：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class JavaInitOrder &#123;</span><br><span class="line">	// 静态变量</span><br><span class="line">	public static String staticVar = &quot;静态变量&quot;;</span><br><span class="line">	// 变量</span><br><span class="line">	public String var = &quot;变量&quot;;</span><br><span class="line">	// 静态初始化块</span><br><span class="line">	static &#123;</span><br><span class="line">		System.out.println(staticVar);</span><br><span class="line">		System.out.println(&quot;静态初始化块&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	// 初始化块</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(var);</span><br><span class="line">		System.out.println(&quot;初始化块&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	// 构造器</span><br><span class="line">	public JavaInitOrder() &#123;</span><br><span class="line">		System.out.println(&quot;构造器&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		new JavaInitOrder();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/11/23/java-init-order/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/23/java-init-order/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eclipse-dynamic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/22/eclipse-dynamic/">eclipse修改dynamic web module version的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/22/eclipse-dynamic/" class="archive-article-date">
-  	<time datetime="2017-11-22T07:56:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>偶尔碰到这一类的问题，从svn上拉下来的maven管理的web工程，导入eclipse后，转换web工程的时候，<br>出现Cannot change version of project facet Dynamic Web Module to 3.0</p>
-</blockquote>
-<p>按照maven web工程转eclipse web工程的套路，在Project Facets里面中选择Dynamic Web Module，选择3.0版本的时候，报错，无法继续，然而在其他同事那里却没有这个问题，诚然不知什么造成的，最后默认是eclipse的错。<br>
-        
-          <a class="article-more-a" href="/2017/11/22/eclipse-dynamic/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/22/eclipse-dynamic/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mongodb-istall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/21/mongodb-istall/">linux下mongodb的安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/21/mongodb-istall/" class="archive-article-date">
-  	<time datetime="2017-11-21T06:22:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h3><ul>
-<li>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</li>
-<li>MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/11/21/mongodb-istall/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/21/mongodb-istall/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-kafka-storm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/21/kafka-storm/">部署kafka-zookeeper-storm工程环境</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/21/kafka-storm/" class="archive-article-date">
-  	<time datetime="2017-11-21T02:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>实际生产中要处理大量数据，并且是要实时处理的，选择了storm，而数据源则选择与之搭配的kafka。</p>
-</blockquote>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ol>
-<li>Storm是一个分布式的，可靠的，容错的数据流处理系统。它会把工作任务委托给不同类型的组件，每个组件负责处理一项简单特定的任务。Storm集群的输入流由一个被称作spout的组件管理，spout把数据传递给bolt， bolt要么把数据保存到某种存储器，要么把数据传递给其它的bolt。你可以想象一下，一个Storm集群就是在一连串的bolt之间转换spout传过来的数据。</li>
-<li>Kafka是一种高吞吐量的分布式发布订阅消息系统，它可以处理消费者规模的网站中的所有动作流数据。 这种动作（网页浏览，搜索和其他用户的行动）是在现代网络上的许多社会功能的一个关键因素。 这些数据通常是由于吞吐量的要求而通过处理日志和日志聚合来解决。 对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，这是一个可行的解决方案。Kafka的目的是通过Hadoop的并行加载机制来统一线上和离线的消息处理，也是为了通过集群来提供实时的消费。</li>
-<li>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。</li>
-</ol>
-<p>了解了3个关键的“大零件”，明白他们各自的功能和他们之间的关系，组装一个“粗犷”的大数据环境，也并不是什么难事。<br>以下就是部署是详细步骤了：<br>
-        
-          <a class="article-more-a" href="/2017/11/21/kafka-storm/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">storm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/21/kafka-storm/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/12/flask/">展开全文 >></a>
         </p>
       
 
@@ -723,13 +260,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/21/python-base/">python基础</a>
+      <a class="article-title" href="/2017/04/23/python-base/">python基础</a>
     </h1>
   
 
         
-        <a href="/2017/11/21/python-base/" class="archive-article-date">
-  	<time datetime="2017-11-21T01:42:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
+        <a href="/2017/04/23/python-base/" class="archive-article-date">
+  	<time datetime="2017-04-23T01:42:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-23</time>
 </a>
         
       </header>
@@ -739,7 +276,7 @@
         <blockquote>
 <p>当初学python，是为了搞爬虫，到互联网上爬取自己想要的资料。<br>个人认为，学好了一种编程语言，再转学另外一种，是很快上手的，毕竟，原理懂了，万变不离其中。<br>python的基础教程网上一大把，但如果要深入精通的，还是要跟随一定的python项目，方得修炼成形。<br>基础教程推荐 廖雪峰的 <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="noopener">《Python教程》</a><br>
         
-          <a class="article-more-a" href="/2017/11/21/python-base/#more">more >></a>
+          <a class="article-more-a" href="/2017/04/23/python-base/#more">more >></a>
         
       
 
@@ -774,7 +311,275 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/21/python-base/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/04/23/python-base/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Synchronized" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/02/Synchronized/">Synchronized的用法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/02/Synchronized/" class="archive-article-date">
+  	<time datetime="2017-04-02T03:51:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Synchronized的概念<br>synchronized是Java中的关键字，是一种同步锁。它修饰的对象有以下几种：<br>1.修饰一个代码块，被修饰的代码块称为同步语句块，其作用的范围是大括号{}括起来的代码，作用的对象是调用这个代码块的对象;<br>2.修饰一个方法，被修饰的方法称为同步方法，其作用的范围是整个方法，作用的对象是调用这个方法的对象;<br>3.修改一个静态的方法，其作用的范围是整个静态方法，作用的对象是这个类的所有对象；<br>4.修改一个类，其作用的范围是synchronized后面括号括起来的部分，作用的对象是这个类的所有对象;</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/04/02/Synchronized/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/02/Synchronized/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mongodb-istall" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/mongodb-istall/">linux下mongodb的安装</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/21/mongodb-istall/" class="archive-article-date">
+  	<time datetime="2017-03-21T06:22:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h3><ul>
+<li>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</li>
+<li>MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。</li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/03/21/mongodb-istall/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/21/mongodb-istall/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hadoop-env" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/12/hadoop-env/">Hadoop环境搭建教程（2.7.3）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/12/hadoop-env/" class="archive-article-date">
+  	<time datetime="2017-03-12T02:55:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a>1.说明</h3><p>组网：<br>Namenode(172.20.60.145)     ——1台<br>Datanode(172.20.60.146-148)  ——3台</p>
+<p>IP地址与主机名、系统、物理机信息对应如下：<br>172.20.60.145  namenode      RHEL6.5    ThinkPad X201i<br>172.20.60.146  datanode101    RHEL6.5    ThinkPad X230虚拟机<br>172.20.60.147  datanode102    RHEL6.5    ThinkPad X230虚拟机<br>172.20.60.148  datanode103    RHEL6.5    ThinkPad X230虚拟机</p>
+<p>所需镜像与软件：<br>VMware-workstation-full-9.0.0-812388.zip<br>ultraiso_v9.5.3.2901.rar<br>rhel-server-6.5-i386-boot.iso<br>rhel-server-6.5-i386-dvd.iso<br>jdk-7u71-linux-i586.tar.gz<br>hadoop-2.7.3.tar.gz</p>
+        
+          <a class="article-more-a" href="/2017/03/12/hadoop-env/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/12/hadoop-env/">展开全文 >></a>
         </p>
       
 
@@ -811,13 +616,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/21/first-blog/">开博之笔</a>
+      <a class="article-title" href="/2017/01/20/first-blog/">开博之笔</a>
     </h1>
   
 
         
-        <a href="/2017/11/21/first-blog/" class="archive-article-date">
-  	<time datetime="2017-11-21T01:27:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
+        <a href="/2017/01/20/first-blog/" class="archive-article-date">
+  	<time datetime="2017-01-20T01:27:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-20</time>
 </a>
         
       </header>
@@ -861,7 +666,277 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/21/first-blog/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/01/20/first-blog/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-xrandr-order" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/xrandr-order/">解决笔记本ubuntu系统外接显示器分辨率的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/16/xrandr-order/" class="archive-article-date">
+  	<time datetime="2017-01-16T09:24:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>笔记本装的是ubuntu系统，外接一个大显示器，看起来舒服点，无奈，接显示器后，分辨率变低了，屏幕只显示了一半<br>最终使用xrandr命令解决了问题。</p>
+</blockquote>
+<h4 id="步骤如下："><a href="#步骤如下：" class="headerlink" title="步骤如下："></a>步骤如下：</h4><h5 id="1、先用xrandr命令查看"><a href="#1、先用xrandr命令查看" class="headerlink" title="1、先用xrandr命令查看"></a>1、先用xrandr命令查看</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">hzzzy@hzzzy:~$ xrandr</span><br><span class="line">Screen 0: minimum 8 x 8, current 1366 x 768, maximum 32767 x 32767</span><br><span class="line">LVDS1 connected 1366x768+0+0 (normal left inverted right x axis y axis) 344mm x 194mm</span><br><span class="line">   1366x768      60.00*+</span><br><span class="line">   1360x768      59.80    59.96 </span><br><span class="line">   1280x720      60.00 </span><br><span class="line">   1024x768      60.00 </span><br><span class="line">   1024x576      60.00 </span><br><span class="line">   960x540       60.00 </span><br><span class="line">   800x600       60.32    56.25 </span><br><span class="line">   864x486       60.00</span><br><span class="line">   640x480       59.94 </span><br><span class="line">   720x405       60.00</span><br><span class="line">   680x384       60.00 </span><br><span class="line">   640x360       60.00 </span><br><span class="line">DP1 disconnected (normal left inverted right x axis y axis)</span><br><span class="line">HDMI1 disconnected (normal left inverted right x axis y axis)</span><br><span class="line">VGA1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 408mm x 255mm</span><br><span class="line">   1440x900      59.89 +  74.98</span><br><span class="line">   1280x1024     75.02    60.02</span><br><span class="line">   1280x960      60.00</span><br><span class="line">   1280x800      74.93    59.81</span><br><span class="line">   1152x864      75.00</span><br><span class="line">   1024x768      75.08*   70.07    60.00</span><br><span class="line">   832x624       74.55</span><br><span class="line">   800x600       72.19    75.00    60.32    56.25</span><br><span class="line">   640x480       75.00    72.81    66.67    60.00</span><br><span class="line">   720x400       70.08</span><br><span class="line">VIRTUAL1 disconnected (normal left inverted right x axis y axis)</span><br></pre></td></tr></table></figure>
+<p>上面标有*的是当前的显示器分辨率。LVDS1是我笔记本的，VGA1是我外接的显示器的分辨率。</p>
+        
+          <a class="article-more-a" href="/2017/01/16/xrandr-order/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/16/xrandr-order/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git-problems" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/git-problems/">git使用过程中遇到的问题－持续更新</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/16/git-problems/" class="archive-article-date">
+  	<time datetime="2017-01-16T01:19:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>如果系统中有一些配置文件在服务器上做了配置修改,然后后续开发又新添加一些配置项的时候,在发布这个配置文件的时候,会发生代码冲突:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">error: Your local changes to the following files would be overwritten by merge:</span><br><span class="line">        protected/config/mytest.py</span><br><span class="line">Please, commit your changes or stash them before you can merge.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果希望保留生产服务器上所做的改动,仅仅并入新配置项, 处理方法如下:<br>
+        
+          <a class="article-more-a" href="/2017/01/16/git-problems/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/16/git-problems/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git-order" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/11/git-order/">git常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/11/git-order/" class="archive-article-date">
+  	<time datetime="2017-01-11T07:35:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>平时工作大多用的是SVN，偶尔用用git，仅在自己搞自己项目的时候。<br>就这样常常忘了git的命令，因不常用，用时只有个大概的印象。<br>下面一张git命令图，可以经常查用。</p>
+</blockquote>
+<p><img src="http://p04arsj3c.bkt.clouddn.com/2016_1_8_8_3_4_816_1000.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/11/git-order/">展开全文 >></a>
         </p>
       
 
@@ -997,6 +1072,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
