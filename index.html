@@ -253,6 +253,93 @@
 
 
   
+    <article id="post-hbase-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/hbase-install/">HBase1.1.2安装</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/18/hbase-install/" class="archive-article-date">
+  	<time datetime="2018-05-18T08:09:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h3><p>HBase搭建的前提是Hadoop和Zookeeper均已搭建完毕，并确保各节点时钟一致，避免因时间不一致而导致HMaster启动失败。<br>一个分布式运行的HBase依赖一个Zookeeper集群。所有的节点和客户端都必须能够访问Zookeeper。默认的情况下HBase会管理一个Zookeeper集群。这个集群会随着HBase的启动而启动。<br>当然，我们也可以自己管理一个Zookeeper集群，但需要配置HBase。需要修改conf/hbase-env.sh里面的HBASE_MANAGES_ZK 来切换。这个值默认是true的，作用是让HBase启动的时候同时也启动Zookeeper。让HBase使用一个现有的不被HBase托管的Zookeeper集群，需要设置 conf/hbase-env.sh文件中的HBASE_MANAGES_ZK 属性为 false，并在文件hbase-site.xml添加hbase.zookeeper.quorum的值。</p>
+        
+          <a class="article-more-a" href="/2018/05/18/hbase-install/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">hbase</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/18/hbase-install/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-logstash-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -985,119 +1072,6 @@
 
 
   
-    <article id="post-QuartzUtil" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/01/QuartzUtil/">一个实用的任务调度工具类-QuartzUtil</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/01/QuartzUtil/" class="archive-article-date">
-  	<time datetime="2017-12-01T09:26:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>有时候我们需要定时启动一些模块，比如5秒一次启动，或一天启动一次<br>下面的任务调度工具类满足你的需求。</p>
-</blockquote>
-<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
-<li>SchedulerFactory    – 调度程序工厂<ol>
-<li>StdSchedulerFactory   – Quartz默认的SchedulerFactory</li>
-<li>DirectSchedulerFactory  – DirectSchedulerFactory是对SchedulerFactory的直接实现,通过它可以直接构建Scheduler、threadpool 等<br>  ThreadExecutor / DefaultThreadExecutor   – 内部线程操作对象</li>
-</ol>
-</li>
-<li>Scheduler    – 调度器<ol>
-<li>StdScheduler    – Quartz默认的Scheduler</li>
-<li>RemoteScheduler  – 带有RMI功能的Scheduler</li>
-</ol>
-</li>
-<li>JOB –任务对象<ol>
-<li>JobDetail  – 他是实现轮询的一个的回调类，可将参数封装成JobDataMap对象,Quartz将任务的作业状态保存在JobDetail中.</li>
-<li>JobDataMap –  JobDataMap用来报错由JobDetail传递过来的任务实例对象</li>
-</ol>
-</li>
-<li>Trigger –触发器<ol>
-<li>SimpleTrigger &lt;普通的Trigger&gt; –  SimpleScheduleBuilder</li>
-<li>CronTrigger  &lt;带Cron Like 表达式的Trigger&gt; – CronScheduleBuilder</li>
-<li>CalendarIntervalTrigger &lt;带日期触发的Trigger&gt; – CalendarIntervalScheduleBuilder</li>
-<li>DailyTimeIntervalTrigger &lt;按天触发的Trigger&gt; – DailyTimeIntervalScheduleBuilder</li>
-</ol>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/12/01/QuartzUtil/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/01/QuartzUtil/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1191,7 +1165,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Filter</a>
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,15 +1173,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+                <a href="javascript:void(0)" class="js-tag color1">hbase</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color2">Filter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1215,7 +1185,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1223,15 +1201,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1243,7 +1217,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1252,6 +1226,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">schedule</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
