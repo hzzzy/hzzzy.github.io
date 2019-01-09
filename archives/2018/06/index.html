@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.hzzzy.top">
-  <title>解决笔记本ubuntu系统外接显示器分辨率的问题 | Hzzzy的博客</title>
+  <title>Archives: 2018/6 | Hzzzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="笔记本装的是ubuntu系统，外接一个大显示器，看起来舒服点，无奈，接显示器后，分辨率变低了，屏幕只显示了一半最终使用xrandr命令解决了问题。  步骤如下：1、先用xrandr命令查看1234567891011121314151617181920212223242526272829hzzzy@hzzzy:~$ xrandrScreen 0: minimum 8 x 8, current 13">
-<meta name="keywords" content="问题">
-<meta property="og:type" content="article">
-<meta property="og:title" content="解决笔记本ubuntu系统外接显示器分辨率的问题">
-<meta property="og:url" content="www.hzzzy.top/2017/01/16/xrandr-order/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hzzzy的博客">
+<meta property="og:url" content="www.hzzzy.top/archives/2018/06/index.html">
 <meta property="og:site_name" content="Hzzzy的博客">
-<meta property="og:description" content="笔记本装的是ubuntu系统，外接一个大显示器，看起来舒服点，无奈，接显示器后，分辨率变低了，屏幕只显示了一半最终使用xrandr命令解决了问题。  步骤如下：1、先用xrandr命令查看1234567891011121314151617181920212223242526272829hzzzy@hzzzy:~$ xrandrScreen 0: minimum 8 x 8, current 13">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-02T02:41:39.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决笔记本ubuntu系统外接显示器分辨率的问题">
-<meta name="twitter:description" content="笔记本装的是ubuntu系统，外接一个大显示器，看起来舒服点，无奈，接显示器后，分辨率变低了，屏幕只显示了一半最终使用xrandr命令解决了问题。  步骤如下：1、先用xrandr命令查看1234567891011121314151617181920212223242526272829hzzzy@hzzzy:~$ xrandrScreen 0: minimum 8 x 8, current 13">
+<meta name="twitter:title" content="Hzzzy的博客">
   
     <link rel="alternative" href="/atom.xml" title="Hzzzy的博客" type="application/atom+xml">
   
@@ -167,176 +162,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-xrandr-order" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      解决笔记本ubuntu系统外接显示器分辨率的问题
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/06/03/hive-install/" class="archive-article-date">
+  	<time datetime="2018-06-03T02:29:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/06/03/hive-install/">Hive 2.3.2安装</a>
     </h1>
   
 
-        
-        <a href="/2017/01/16/xrandr-order/" class="archive-article-date">
-  	<time datetime="2017-01-16T09:24:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>笔记本装的是ubuntu系统，外接一个大显示器，看起来舒服点，无奈，接显示器后，分辨率变低了，屏幕只显示了一半<br>最终使用xrandr命令解决了问题。</p>
-</blockquote>
-<h4 id="步骤如下："><a href="#步骤如下：" class="headerlink" title="步骤如下："></a>步骤如下：</h4><h5 id="1、先用xrandr命令查看"><a href="#1、先用xrandr命令查看" class="headerlink" title="1、先用xrandr命令查看"></a>1、先用xrandr命令查看</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">hzzzy@hzzzy:~$ xrandr</span><br><span class="line">Screen 0: minimum 8 x 8, current 1366 x 768, maximum 32767 x 32767</span><br><span class="line">LVDS1 connected 1366x768+0+0 (normal left inverted right x axis y axis) 344mm x 194mm</span><br><span class="line">   1366x768      60.00*+</span><br><span class="line">   1360x768      59.80    59.96 </span><br><span class="line">   1280x720      60.00 </span><br><span class="line">   1024x768      60.00 </span><br><span class="line">   1024x576      60.00 </span><br><span class="line">   960x540       60.00 </span><br><span class="line">   800x600       60.32    56.25 </span><br><span class="line">   864x486       60.00</span><br><span class="line">   640x480       59.94 </span><br><span class="line">   720x405       60.00</span><br><span class="line">   680x384       60.00 </span><br><span class="line">   640x360       60.00 </span><br><span class="line">DP1 disconnected (normal left inverted right x axis y axis)</span><br><span class="line">HDMI1 disconnected (normal left inverted right x axis y axis)</span><br><span class="line">VGA1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 408mm x 255mm</span><br><span class="line">   1440x900      59.89 +  74.98</span><br><span class="line">   1280x1024     75.02    60.02</span><br><span class="line">   1280x960      60.00</span><br><span class="line">   1280x800      74.93    59.81</span><br><span class="line">   1152x864      75.00</span><br><span class="line">   1024x768      75.08*   70.07    60.00</span><br><span class="line">   832x624       74.55</span><br><span class="line">   800x600       72.19    75.00    60.32    56.25</span><br><span class="line">   640x480       75.00    72.81    66.67    60.00</span><br><span class="line">   720x400       70.08</span><br><span class="line">VIRTUAL1 disconnected (normal left inverted right x axis y axis)</span><br></pre></td></tr></table></figure>
-<p>上面标有*的是当前的显示器分辨率。LVDS1是我笔记本的，VGA1是我外接的显示器的分辨率。</p>
-<a id="more"></a>
-<h5 id="2、从上面可以看到，我的外接的显示器分辨率可达到1440x900的，执行cvt"><a href="#2、从上面可以看到，我的外接的显示器分辨率可达到1440x900的，执行cvt" class="headerlink" title="2、从上面可以看到，我的外接的显示器分辨率可达到1440x900的，执行cvt"></a>2、从上面可以看到，我的外接的显示器分辨率可达到1440x900的，执行cvt</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hzzzy@hzzzy:~$ cvt 1440 900</span><br><span class="line"># 1440x900 59.89 Hz (CVT 1.30MA) hsync: 55.93 kHz; pclk: 106.50 MHz</span><br><span class="line">Modeline &quot;1440x900_60.00&quot;  106.50  1440 1528 1672 1904  900 903 909 934 -hsync +vsync</span><br></pre></td></tr></table></figure>
-<h5 id="3、Modeline后面的参数就是要设置的显示器的分辨率的参数-执行sudo-xrandr-–newmode-命令"><a href="#3、Modeline后面的参数就是要设置的显示器的分辨率的参数-执行sudo-xrandr-–newmode-命令" class="headerlink" title="3、Modeline后面的参数就是要设置的显示器的分辨率的参数,执行sudo xrandr –newmode 命令"></a>3、Modeline后面的参数就是要设置的显示器的分辨率的参数,执行sudo xrandr –newmode 命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xrandr --newmode &quot;1440x900_60.00&quot;  106.50  1440 1528 1672 1904  900 903 909 934 -hsync +vsync</span><br></pre></td></tr></table></figure>
-<h5 id="4、把分辨率mode赋予外接的显示器"><a href="#4、把分辨率mode赋予外接的显示器" class="headerlink" title="4、把分辨率mode赋予外接的显示器"></a>4、把分辨率mode赋予外接的显示器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xrandr --addmode VGA1 &quot;1440x900_60.00&quot;</span><br></pre></td></tr></table></figure>
-<h5 id="5、设置输出外接显示器"><a href="#5、设置输出外接显示器" class="headerlink" title="5、设置输出外接显示器"></a>5、设置输出外接显示器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xrandr --output VGA1 --mode &quot;1440x900_60.00&quot;</span><br></pre></td></tr></table></figure>
-<p>通过以上5部可解决ubutnu系统外接显示器分辨率的问题。但，注意了，重启或关机再开机后，以上的设置会失效。<br>为了以后都使用这方式解决分辨率的问题，可把以上的命令做成shell脚本，并随系统启动而启动。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        			<a href="/categories/大数据//" class="article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:www.hzzzy.top/2017/01/16/xrandr-order/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/03/12/hadoop-env/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hadoop环境搭建教程（2.7.3）
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/01/16/git-problems/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">git使用过程中遇到的问题－持续更新</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -359,8 +249,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

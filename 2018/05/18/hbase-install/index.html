@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="www.hzzzy.top">
   <title>HBase1.1.2安装 | Hzzzy的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、说明HBase搭建的前提是Hadoop和Zookeeper均已搭建完毕，并确保各节点时钟一致，避免因时间不一致而导致HMaster启动失败。一个分布式运行的HBase依赖一个Zookeeper集群。所有的节点和客户端都必须能够访问Zookeeper。默认的情况下HBase会管理一个Zookeeper集群。这个集群会随着HBase的启动而启动。当然，我们也可以自己管理一个Zookeeper集群，">
+  <meta name="description" content="介绍 HBase是一个分布式的、面向列的开源数据库，该技术来源于 Fay Chang 所撰写的Google论文“Bigtable：一个结构化数据的分布式存储系统”。就像Bigtable利用了Google文件系统（File System）所提供的分布式数据存储一样，HBase在Hadoop之上提供了类似于Bigtable的能力。HBase是Apache的Hadoop项目的子项目。HBase不同于一般">
 <meta name="keywords" content="hbase">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HBase1.1.2安装">
 <meta property="og:url" content="www.hzzzy.top/2018/05/18/hbase-install/index.html">
 <meta property="og:site_name" content="Hzzzy的博客">
-<meta property="og:description" content="一、说明HBase搭建的前提是Hadoop和Zookeeper均已搭建完毕，并确保各节点时钟一致，避免因时间不一致而导致HMaster启动失败。一个分布式运行的HBase依赖一个Zookeeper集群。所有的节点和客户端都必须能够访问Zookeeper。默认的情况下HBase会管理一个Zookeeper集群。这个集群会随着HBase的启动而启动。当然，我们也可以自己管理一个Zookeeper集群，">
+<meta property="og:description" content="介绍 HBase是一个分布式的、面向列的开源数据库，该技术来源于 Fay Chang 所撰写的Google论文“Bigtable：一个结构化数据的分布式存储系统”。就像Bigtable利用了Google文件系统（File System）所提供的分布式数据存储一样，HBase在Hadoop之上提供了类似于Bigtable的能力。HBase是Apache的Hadoop项目的子项目。HBase不同于一般">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-09T08:25:18.583Z">
+<meta property="og:updated_time" content="2019-01-09T08:35:57.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HBase1.1.2安装">
-<meta name="twitter:description" content="一、说明HBase搭建的前提是Hadoop和Zookeeper均已搭建完毕，并确保各节点时钟一致，避免因时间不一致而导致HMaster启动失败。一个分布式运行的HBase依赖一个Zookeeper集群。所有的节点和客户端都必须能够访问Zookeeper。默认的情况下HBase会管理一个Zookeeper集群。这个集群会随着HBase的启动而启动。当然，我们也可以自己管理一个Zookeeper集群，">
+<meta name="twitter:description" content="介绍 HBase是一个分布式的、面向列的开源数据库，该技术来源于 Fay Chang 所撰写的Google论文“Bigtable：一个结构化数据的分布式存储系统”。就像Bigtable利用了Google文件系统（File System）所提供的分布式数据存储一样，HBase在Hadoop之上提供了类似于Bigtable的能力。HBase是Apache的Hadoop项目的子项目。HBase不同于一般">
   
     <link rel="alternative" href="/atom.xml" title="Hzzzy的博客" type="application/atom+xml">
   
@@ -187,7 +187,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h3><p>HBase搭建的前提是Hadoop和Zookeeper均已搭建完毕，并确保各节点时钟一致，避免因时间不一致而导致HMaster启动失败。<br>一个分布式运行的HBase依赖一个Zookeeper集群。所有的节点和客户端都必须能够访问Zookeeper。默认的情况下HBase会管理一个Zookeeper集群。这个集群会随着HBase的启动而启动。<br>当然，我们也可以自己管理一个Zookeeper集群，但需要配置HBase。需要修改conf/hbase-env.sh里面的HBASE_MANAGES_ZK 来切换。这个值默认是true的，作用是让HBase启动的时候同时也启动Zookeeper。让HBase使用一个现有的不被HBase托管的Zookeeper集群，需要设置 conf/hbase-env.sh文件中的HBASE_MANAGES_ZK 属性为 false，并在文件hbase-site.xml添加hbase.zookeeper.quorum的值。</p>
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>HBase是一个分布式的、面向列的开源数据库，该技术来源于 Fay Chang 所撰写的Google论文“Bigtable：一个结构化数据的分布式存储系统”。就像Bigtable利用了Google文件系统（File System）所提供的分布式数据存储一样，HBase在Hadoop之上提供了类似于Bigtable的能力。HBase是Apache的Hadoop项目的子项目。HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库。另一个不同的是HBase基于列的而不是基于行的模式。</p>
+</blockquote>
+<h3 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h3><p>HBase搭建的前提是Hadoop和Zookeeper均已搭建完毕，并确保各节点时钟一致，避免因时间不一致而导致HMaster启动失败。<br>一个分布式运行的HBase依赖一个Zookeeper集群。所有的节点和客户端都必须能够访问Zookeeper。默认的情况下HBase会管理一个Zookeeper集群。这个集群会随着HBase的启动而启动。<br>当然，我们也可以自己管理一个Zookeeper集群，但需要配置HBase。需要修改conf/hbase-env.sh里面的HBASE_MANAGES_ZK 来切换。这个值默认是true的，作用是让HBase启动的时候同时也启动Zookeeper。让HBase使用一个现有的不被HBase托管的Zookeeper集群，需要设置 conf/hbase-env.sh文件中的HBASE_MANAGES_ZK 属性为 false，并在文件hbase-site.xml添加hbase.zookeeper.quorum的值。</p>
 <a id="more"></a>
 <h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><p>以hadoop用户将文件 hbase-1.1.2-bin.tar.gz 拷贝到目录/opt：<br>解压安装：tar zxvf hbase-1.1.2-bin.tar.gz<br>安装完毕</p>
 <h3 id="三、配置HBase"><a href="#三、配置HBase" class="headerlink" title="三、配置HBase"></a>三、配置HBase</h3><h5 id="1、修改环境变量"><a href="#1、修改环境变量" class="headerlink" title="1、修改环境变量"></a>1、修改环境变量</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/profile   #添加或修改 </span><br><span class="line">export JAVA_HOME=/opt/hadoop2/jdk1.7.0_79</span><br><span class="line">export HADOOP_HOME=/opt/hadoop2/hadoop-2.7.1</span><br><span class="line">export HBASE_HOME=/opt/hbase-1.1.2</span><br><span class="line">export ZOOKEEPER_HOME=/opt/zookeeper-3.4.6</span><br><span class="line">export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin</span><br></pre></td></tr></table></figure>
@@ -309,11 +312,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/10/11/waterfall-use/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/06/03/hive-install/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          nodejs waterfall的使用
+          Hive 2.3.2安装
         
       </div>
     </a>
@@ -442,7 +445,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">问题</a>
+                <a href="javascript:void(0)" class="js-tag color2">Filter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,23 +453,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hbase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Filter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Flask</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,15 +465,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">hbase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">storm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
+                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +505,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -503,10 +514,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">schedule</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
